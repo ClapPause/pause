@@ -1,26 +1,18 @@
-import 'package:json_annotation/json_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 part 'task.g.dart';
+part 'task.freezed.dart';
+@freezed
+class Task with _$Task {
+  const factory Task({
+    required int id,
+    required int uid,
+    required int mainGoalId,
+    required int subGoalId,
+    required String goal,
+    required String repeatType,
+    required String repeatValue,
+  }) = _Task;
 
-@JsonSerializable()
-class Task {
-  final int id;
-  final int uid;
-  final int mainGoalId;
-  final int subGoalId;
-  final String goal;
-  final String repeatType;
-  final String repeatValue;
-
-  Task({
-    required this.id,
-    required this.uid,
-    required this.mainGoalId,
-    required this.subGoalId,
-    required this.goal,
-    required this.repeatType,
-    required this.repeatValue,
-  });
-
-  factory Task.fromJson(Map<String, dynamic> json) => _$TaskFromJson(json);
-  Map<String, dynamic> toJson() => _$TaskToJson(this);
+  factory Task.fromJson(Map<String, Object?> json) =>
+      _$TaskFromJson(json);
 }

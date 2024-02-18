@@ -6,12 +6,14 @@ part of 'life_goal.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-LifeGoal _$LifeGoalFromJson(Map<String, dynamic> json) => LifeGoal(
+_$LifeGoalImpl _$$LifeGoalImplFromJson(Map<String, dynamic> json) =>
+    _$LifeGoalImpl(
       uid: json['uid'] as int,
       goal: json['goal'] as String,
     );
 
-Map<String, dynamic> _$LifeGoalToJson(LifeGoal instance) => <String, dynamic>{
+Map<String, dynamic> _$$LifeGoalImplToJson(_$LifeGoalImpl instance) =>
+    <String, dynamic>{
       'uid': instance.uid,
       'goal': instance.goal,
     };

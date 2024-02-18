@@ -1,16 +1,14 @@
-import 'package:json_annotation/json_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 part 'life_goal.g.dart';
+part 'life_goal.freezed.dart';
 
-@JsonSerializable()
-class LifeGoal {
-  final int uid;
-  final String goal;
+@freezed
+class LifeGoal with _$LifeGoal {
+  const factory LifeGoal({
+    required int uid,
+    required String goal,
+  }) = _LifeGoal;
 
-  LifeGoal({
-    required this.uid,
-    required this.goal,
-  });
-
-  factory LifeGoal.fromJson(Map<String, dynamic> json) => _$LifeGoalFromJson(json);
-  Map<String, dynamic> toJson() => _$LifeGoalToJson(this);
+  factory LifeGoal.fromJson(Map<String, Object?> json) =>
+      _$LifeGoalFromJson(json);
 }

@@ -12,12 +12,13 @@ class HomeGoalTabBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 35),
+      margin: const EdgeInsets.symmetric(horizontal: 16),
       width: double.infinity,
-      decoration: const BoxDecoration(
-          border: Border(
-        bottom: BorderSide(color: Color(0xFFD9D9D9)),
-      )),
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(color: kBoxBorderColor),
+        ),
+      ),
       child: Row(
         children: [
           kHomeGoalTabBarItem(0, "주간"),
@@ -54,7 +55,6 @@ class HomeGoalTabBar extends StatelessWidget {
                 color: index == currentIndex ? kPrimaryColor : kBlack100,
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
-                height: 15 / 16,
               ),
             ),
           ),

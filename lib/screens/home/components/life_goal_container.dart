@@ -17,7 +17,7 @@ class LifeGoalContainer extends StatelessWidget {
               '나의 인생목표',
               style: TextStyle(
                 color: kBlackColor,
-                fontSize: 22,
+                fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -29,16 +29,17 @@ class LifeGoalContainer extends StatelessWidget {
             height: 117,
             decoration: BoxDecoration(
               border: Border.all(
-                color: const Color(0xFFF2F2FA),
+                color: kBoxBorderColor,
+
               ),
               borderRadius: BorderRadius.circular(15),
             ),
-            child: const Text(
-              "\“명예로운 삶을 통해\n행복하기\”",
+            child: Text(
+              "“명예로운 삶을 통해\n행복하기”",
               style: TextStyle(
-                fontSize: 20,
+                fontSize: 16,
                 fontWeight: FontWeight.w500,
-                color: Color(0xFF414141),
+                color: kFontColor,
               ),
               textAlign: TextAlign.center,
             ),

@@ -1,29 +1,30 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:pause/models/main_goal/main_goal.dart';
 import 'package:pause/services/firebase_service.dart';
 
 import '../constants/constants_color.dart';
 
 class MainGoalService {
-  static final CollectionReference _mainGoalCollection =
-      FirebaseService.fireStore.collection('main_goal');
+  static const String _collection = 'main_goal';
 
   static Future<void> createMainGoal(Map<String, dynamic> data) async {
-    await _mainGoalCollection.add(data);
+    await FirebaseService.fireStore.collection(_collection).add(data);
   }
 
-  static Future<Map<String, dynamic>?> readMainGoal(String id) async {
-    DocumentSnapshot snapshot = await _mainGoalCollection.doc(id).get();
-    return snapshot.data() as Map<String, dynamic>?; // Explicit cast
+  static Future<MainGoal?> readMainGoal(int id) async {
+    final snapshot = await FirebaseService.fireStore.collection(_collection).doc(id.toString()).get();
+    if(snapshot.exists){
+      return MainGoal.fromJson(snapshot.data()!);
+    }
+    return null;
   }
 
   static Future<void> updateMainGoal(
-      String id, Map<String, dynamic> data) async {
-    await _mainGoalCollection.doc(id).update(data);
+      int id, Map<String, dynamic> data) async {
+    await FirebaseService.fireStore.collection(_collection).doc(id.toString()).update(data);
   }
 
-  static Future<void> deleteMainGoal(String id) async {
-    await _mainGoalCollection.doc(id).delete();
+  static Future<void> deleteMainGoal(int id) async {
+    await FirebaseService.fireStore.collection(_collection).doc(id.toString()).delete();
   }
 
   static Future<List<MainGoal>> getMainGoalList(int uid) async {

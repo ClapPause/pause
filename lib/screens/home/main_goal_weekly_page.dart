@@ -3,22 +3,13 @@ import 'package:pause/constants/constants_color.dart';
 import 'package:pause/constants/constants_value.dart';
 import 'package:pause/screens/home/components/weekly_main_goal_container.dart';
 import 'package:pause/services/main_goal_service.dart';
-import 'package:pause/services/sub_goal_service.dart';
-import 'package:pause/utils/color_utils.dart';
 import '../../models/main_goal/main_goal.dart';
-import '../../models/sub_goal/sub_goal.dart';
-import '../../models/task/task.dart';
 
 class MainGoalWeeklyPage extends StatefulWidget {
-  final List<MainGoal> mainGoalList;
-  final List<SubGoal> subGoalList;
-  final List<Task> taskList;
 
   const MainGoalWeeklyPage({
     Key? key,
-    required this.mainGoalList,
-    required this.subGoalList,
-    required this.taskList,
+
   }) : super(key: key);
 
   @override
@@ -50,16 +41,17 @@ class _MainGoalWeeklyPageState extends State<MainGoalWeeklyPage> {
         shrinkWrap: true,
         children: [
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 30),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Text(
               '${_selectedDate.year}년 ${_selectedDate.month}월',
               style: TextStyle(
-                fontSize: 22,
+                fontSize: 16,
                 fontWeight: FontWeight.w600,
                 color: kBlackColor,
               ),
             ),
           ),
+          const SizedBox(height: 10),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Row(
@@ -69,10 +61,10 @@ class _MainGoalWeeklyPageState extends State<MainGoalWeeklyPage> {
                     _weekDate = _weekDate.subtract(const Duration(days: 7));
                     _selectedDate = _weekDate;
                   }),
-                  child: const Icon(
+                  child:  Icon(
                     Icons.arrow_back_ios,
                     size: 12,
-                    color: Color(0xFFBCBCBC),
+                    color: kBlack400,
                   ),
                 ),
                 Expanded(
@@ -101,7 +93,7 @@ class _MainGoalWeeklyPageState extends State<MainGoalWeeklyPage> {
                               decoration: BoxDecoration(
                                 color: isSelectedDate(date)
                                     ? kPrimaryColor
-                                    : const Color(0xFFCCCCCC),
+                                    : kBlack100,
                                 borderRadius: BorderRadius.circular(27),
                               ),
                               child: Text(
@@ -125,10 +117,10 @@ class _MainGoalWeeklyPageState extends State<MainGoalWeeklyPage> {
                     _weekDate = _weekDate.add(const Duration(days: 7));
                     _selectedDate = _weekDate;
                   }),
-                  child: const Icon(
+                  child:  Icon(
                     Icons.arrow_forward_ios,
                     size: 12,
-                    color: Color(0xFFBCBCBC),
+                    color: kBlack400,
                   ),
                 ),
               ],
@@ -136,10 +128,10 @@ class _MainGoalWeeklyPageState extends State<MainGoalWeeklyPage> {
           ),
           const SizedBox(height: 20),
           Container(
-            margin: const EdgeInsets.symmetric(horizontal: 20),
+            margin: const EdgeInsets.symmetric(horizontal: 16),
             width: double.infinity,
             height: 1,
-            color: const Color(0xFFD9D9D9),
+            color: kBoxBorderColor,
           ),
           const SizedBox(height: 20),
           FutureBuilder(

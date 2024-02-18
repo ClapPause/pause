@@ -1,16 +1,14 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_naver_login/flutter_naver_login.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:pause/constants/constants_color.dart';
-import 'package:pause/screens/home/home_screen.dart';
 import 'package:pause/screens/main/main_screen.dart';
 import 'package:pause/screens/sign/find_password_screen.dart';
-import 'package:pause/screens/sign/signup_screen.dart';
+import 'package:pause/screens/sign/sign_up_screen.dart';
 import 'package:pause/screens/sign/social_login_result_screen.dart';
 import 'package:pause/widgets/custom_action_button.dart';
 import 'package:pause/widgets/custom_text_field.dart';
@@ -49,7 +47,6 @@ class _LoginScreenState extends State<LoginScreen> {
       String? userEmail = user.kakaoAccount?.email;
       if (userEmail == null) throw Exception('이메일이 존재하지 않습니다');
       if (!mounted) return;
-      print(userEmail);
       Navigator.push(
           context,
           MaterialPageRoute(
@@ -68,14 +65,16 @@ class _LoginScreenState extends State<LoginScreen> {
         throw Exception('로그인을 실패했습니다');
       }
       if (!mounted) return;
-      print("네이버 로그인 이메일 : ${result.account.email}");
       Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => SocialLoginResultScreen(
-                  social: 'naver', email: result.account.email)));
+        context,
+        MaterialPageRoute(
+          builder: (context) => SocialLoginResultScreen(
+            social: 'naver',
+            email: result.account.email,
+          ),
+        ),
+      );
     } catch (e) {
-      log('naverSignIn Error : $e');
       return;
     }
   }
@@ -97,7 +96,6 @@ class _LoginScreenState extends State<LoginScreen> {
       final userInfo = jsonDecode(utf8.decode(jsonData));
       String email = userInfo['email'];
       if (!mounted) return;
-      print(email);
       Navigator.push(
           context,
           MaterialPageRoute(
@@ -115,7 +113,6 @@ class _LoginScreenState extends State<LoginScreen> {
       GoogleSignInAccount? account = await googleSignIn.signIn();
       if (account == null) throw Exception('로그인을 실패했습니다');
       if (!mounted) return;
-      print(account.email);
       Navigator.push(
           context,
           MaterialPageRoute(
@@ -246,7 +243,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => SignupScreen()),
+                    MaterialPageRoute(builder: (context) => const SignUpScreen()),
                   );
                 },
                 child: Text(
@@ -342,7 +339,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => FindPasswordScreen()),
+                        builder: (context) => const FindPasswordScreen()),
                   );
                 },
                 child: Text(

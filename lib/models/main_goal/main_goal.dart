@@ -1,26 +1,18 @@
-import 'package:json_annotation/json_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 part 'main_goal.g.dart';
+part 'main_goal.freezed.dart';
+@freezed
+class MainGoal with _$MainGoal {
+  const factory MainGoal({
+    required int id,
+    required int uid,
+    required int selectColor,
+    required int backgroundColor,
+    required bool finish,
+    required String deadline,
+    required String goal,
+  }) = _MainGoal;
 
-@JsonSerializable()
-class MainGoal {
-  final int id;
-  final int uid;
-  final int selectColor;
-  final int backgroundColor;
-  final bool finish;
-  final String deadline;
-  final String goal;
-
-  MainGoal({
-    required this.id,
-    required this.uid,
-    required this.selectColor,
-    required this.backgroundColor,
-    required this.finish,
-    required this.deadline,
-    required this.goal,
-  });
-
-  factory MainGoal.fromJson(Map<String, dynamic> json) => _$MainGoalFromJson(json);
-  Map<String, dynamic> toJson() => _$MainGoalToJson(this);
+  factory MainGoal.fromJson(Map<String, Object?> json) =>
+      _$MainGoalFromJson(json);
 }

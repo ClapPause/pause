@@ -45,26 +45,27 @@ class _WeeklyTaskContainerState extends State<WeeklyTaskContainer> {
           ),
           const SizedBox(width: 22),
           Expanded(
-              child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                widget.task.goal ?? "",
-                style: const TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  widget.task.goal,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
-              ),
-              const Text(
-                '설정',
-                style: TextStyle(
-                  color: Color(0xFF425884),
-                  fontSize: 10,
+                const Text(
+                  '설정',
+                  style: TextStyle(
+                    color: Color(0xFF425884),
+                    fontSize: 10,
+                  ),
                 ),
-              ),
-            ],
-          )),
+              ],
+            ),
+          ),
           Checkbox(
             value: _value,
             onChanged: (value) => setState(() => _value = value ?? false),

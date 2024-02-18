@@ -26,13 +26,13 @@ class _WeeklyMainGoalContainerState extends State<WeeklyMainGoalContainer> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 26),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Row(
             children: [
               Text(
                 '# ${widget.mainGoal.goal}',
                 style: TextStyle(
-                  fontSize: 22,
+                  fontSize: 16,
                   color: getColor(widget.mainGoal.selectColor),
                   fontWeight: FontWeight.w600,
                 ),
@@ -42,7 +42,7 @@ class _WeeklyMainGoalContainerState extends State<WeeklyMainGoalContainer> {
                 onTap: () => setState(() => _showMore = !_showMore),
                 behavior: HitTestBehavior.opaque,
                 child: Icon(
-                  _showMore ? Icons.expand_more : Icons.expand_less,
+                  _showMore ? Icons.expand_less : Icons.expand_more,
                   color: getColor(widget.mainGoal.selectColor),
                 ),
               ),
@@ -50,27 +50,27 @@ class _WeeklyMainGoalContainerState extends State<WeeklyMainGoalContainer> {
           ),
         ),
         const SizedBox(height: 20),
-        if(_showMore)
-        FutureBuilder(
-            future: SubGoalService.getSubGoalList(1, widget.mainGoal.id),
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                List<SubGoal>? subGoalList = snapshot.data;
-                if (subGoalList == null || subGoalList.isEmpty) {
-                  return Container();
+        if (_showMore)
+          FutureBuilder(
+              future: SubGoalService.getSubGoalList(1, widget.mainGoal.id),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  List<SubGoal>? subGoalList = snapshot.data;
+                  if (subGoalList == null || subGoalList.isEmpty) {
+                    return Container();
+                  }
+                  return ListView(
+                    padding: const EdgeInsets.only(bottom: 12),
+                    physics: const ClampingScrollPhysics(),
+                    shrinkWrap: true,
+                    children: subGoalList
+                        .map((goal) => WeeklySubGoalContainer(
+                            mainGoal: widget.mainGoal, subGoal: goal))
+                        .toList(),
+                  );
                 }
-                return ListView(
-                  padding: const EdgeInsets.only(bottom: 12),
-                  physics: const ClampingScrollPhysics(),
-                  shrinkWrap: true,
-                  children: subGoalList
-                      .map((goal) => WeeklySubGoalContainer(
-                          mainGoal: widget.mainGoal, subGoal: goal))
-                      .toList(),
-                );
-              }
-              return Container();
-            }),
+                return Container();
+              }),
       ],
     );
   }

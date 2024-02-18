@@ -48,7 +48,7 @@ class _WeeklySubGoalContainerState extends State<WeeklySubGoalContainer> {
                 onTap: () => setState(() => _showMore = !_showMore),
                 behavior: HitTestBehavior.opaque,
                 child: Icon(
-                  _showMore ? Icons.expand_more : Icons.expand_less,
+                  _showMore ? Icons.expand_less : Icons.expand_more,
                   color: getColor(widget.mainGoal.selectColor),
                 ),
               ),

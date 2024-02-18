@@ -1,20 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 part 'sub_goal.g.dart';
+part 'sub_goal.freezed.dart';
+@freezed
+class SubGoal with _$SubGoal {
+  const factory SubGoal({
+    required int id,
+    required int uid,
+    required int mainGoalId,
+    required String goal,
+  }) = _SubGoal;
 
-@JsonSerializable()
-class SubGoal {
-  final int id;
-  final int uid;
-  final int mainGoalId;
-  final String goal;
-
-  SubGoal({
-    required this.id,
-    required this.uid,
-    required this.mainGoalId,
-    required this.goal,
-  });
-
-  factory SubGoal.fromJson(Map<String, dynamic> json) => _$SubGoalFromJson(json);
-  Map<String, dynamic> toJson() => _$SubGoalToJson(this);
+  factory SubGoal.fromJson(Map<String, Object?> json) =>
+      _$SubGoalFromJson(json);
 }

@@ -14,12 +14,13 @@ dependencies:
   cupertino_icons: ^1.0.2
   # 데이터 모델링 자동화 라이브러리
   json_annotation: ^4.8.1
+  freezed: ^2.4.7
   # 파이어베이스 관련 라이브러리
   firebase_core: ^2.24.2
   cloud_firestore: ^4.14.0
   firebase_storage: ^11.6.0
   # 상태관리 라이브러리
-  get: ^4.6.6
+  provider: ^6.1.1
   # 이미지 관련 라이브러리
   image_picker: ^1.0.7
   flutter_svg: ^2.0.9

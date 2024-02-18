@@ -21,8 +21,6 @@ class _MainScreenState extends State<MainScreen> {
         return const Center(child: Text('page2'));
       case 2:
         return const Center(child: Text('page3'));
-      case 3:
-        return const Center(child: Text('page4'));
       default:
         return Container();
     }
@@ -92,11 +90,6 @@ class _MainScreenState extends State<MainScreen> {
                   activeImage: 'assets/icon/3_active.svg',
                   inactiveImage: 'assets/icon/3_inactive.svg',
                   index: 2,
-                ),
-                kBottomNavigationBarItem(
-                  activeImage: 'assets/icon/4_active.svg',
-                  inactiveImage: 'assets/icon/4_inactive.svg',
-                  index: 3,
                 ),
               ],
             ),

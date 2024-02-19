@@ -21,12 +21,8 @@ Task _$TaskFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Task {
   int get id => throw _privateConstructorUsedError;
-  int get uid => throw _privateConstructorUsedError;
-  int get mainGoalId => throw _privateConstructorUsedError;
   int get subGoalId => throw _privateConstructorUsedError;
-  String get goal => throw _privateConstructorUsedError;
-  String get repeatType => throw _privateConstructorUsedError;
-  String get repeatValue => throw _privateConstructorUsedError;
+  String get contents => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,14 +34,7 @@ abstract class $TaskCopyWith<$Res> {
   factory $TaskCopyWith(Task value, $Res Function(Task) then) =
       _$TaskCopyWithImpl<$Res, Task>;
   @useResult
-  $Res call(
-      {int id,
-      int uid,
-      int mainGoalId,
-      int subGoalId,
-      String goal,
-      String repeatType,
-      String repeatValue});
+  $Res call({int id, int subGoalId, String contents});
 }
 
 /// @nodoc
@@ -62,41 +51,21 @@ class _$TaskCopyWithImpl<$Res, $Val extends Task>
   @override
   $Res call({
     Object? id = null,
-    Object? uid = null,
-    Object? mainGoalId = null,
     Object? subGoalId = null,
-    Object? goal = null,
-    Object? repeatType = null,
-    Object? repeatValue = null,
+    Object? contents = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      uid: null == uid
-          ? _value.uid
-          : uid // ignore: cast_nullable_to_non_nullable
-              as int,
-      mainGoalId: null == mainGoalId
-          ? _value.mainGoalId
-          : mainGoalId // ignore: cast_nullable_to_non_nullable
-              as int,
       subGoalId: null == subGoalId
           ? _value.subGoalId
           : subGoalId // ignore: cast_nullable_to_non_nullable
               as int,
-      goal: null == goal
-          ? _value.goal
-          : goal // ignore: cast_nullable_to_non_nullable
-              as String,
-      repeatType: null == repeatType
-          ? _value.repeatType
-          : repeatType // ignore: cast_nullable_to_non_nullable
-              as String,
-      repeatValue: null == repeatValue
-          ? _value.repeatValue
-          : repeatValue // ignore: cast_nullable_to_non_nullable
+      contents: null == contents
+          ? _value.contents
+          : contents // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -109,14 +78,7 @@ abstract class _$$TaskImplCopyWith<$Res> implements $TaskCopyWith<$Res> {
       __$$TaskImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {int id,
-      int uid,
-      int mainGoalId,
-      int subGoalId,
-      String goal,
-      String repeatType,
-      String repeatValue});
+  $Res call({int id, int subGoalId, String contents});
 }
 
 /// @nodoc
@@ -130,41 +92,21 @@ class __$$TaskImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? uid = null,
-    Object? mainGoalId = null,
     Object? subGoalId = null,
-    Object? goal = null,
-    Object? repeatType = null,
-    Object? repeatValue = null,
+    Object? contents = null,
   }) {
     return _then(_$TaskImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      uid: null == uid
-          ? _value.uid
-          : uid // ignore: cast_nullable_to_non_nullable
-              as int,
-      mainGoalId: null == mainGoalId
-          ? _value.mainGoalId
-          : mainGoalId // ignore: cast_nullable_to_non_nullable
-              as int,
       subGoalId: null == subGoalId
           ? _value.subGoalId
           : subGoalId // ignore: cast_nullable_to_non_nullable
               as int,
-      goal: null == goal
-          ? _value.goal
-          : goal // ignore: cast_nullable_to_non_nullable
-              as String,
-      repeatType: null == repeatType
-          ? _value.repeatType
-          : repeatType // ignore: cast_nullable_to_non_nullable
-              as String,
-      repeatValue: null == repeatValue
-          ? _value.repeatValue
-          : repeatValue // ignore: cast_nullable_to_non_nullable
+      contents: null == contents
+          ? _value.contents
+          : contents // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -174,13 +116,7 @@ class __$$TaskImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$TaskImpl implements _Task {
   const _$TaskImpl(
-      {required this.id,
-      required this.uid,
-      required this.mainGoalId,
-      required this.subGoalId,
-      required this.goal,
-      required this.repeatType,
-      required this.repeatValue});
+      {required this.id, required this.subGoalId, required this.contents});
 
   factory _$TaskImpl.fromJson(Map<String, dynamic> json) =>
       _$$TaskImplFromJson(json);
@@ -188,21 +124,13 @@ class _$TaskImpl implements _Task {
   @override
   final int id;
   @override
-  final int uid;
-  @override
-  final int mainGoalId;
-  @override
   final int subGoalId;
   @override
-  final String goal;
-  @override
-  final String repeatType;
-  @override
-  final String repeatValue;
+  final String contents;
 
   @override
   String toString() {
-    return 'Task(id: $id, uid: $uid, mainGoalId: $mainGoalId, subGoalId: $subGoalId, goal: $goal, repeatType: $repeatType, repeatValue: $repeatValue)';
+    return 'Task(id: $id, subGoalId: $subGoalId, contents: $contents)';
   }
 
   @override
@@ -211,22 +139,15 @@ class _$TaskImpl implements _Task {
         (other.runtimeType == runtimeType &&
             other is _$TaskImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.uid, uid) || other.uid == uid) &&
-            (identical(other.mainGoalId, mainGoalId) ||
-                other.mainGoalId == mainGoalId) &&
             (identical(other.subGoalId, subGoalId) ||
                 other.subGoalId == subGoalId) &&
-            (identical(other.goal, goal) || other.goal == goal) &&
-            (identical(other.repeatType, repeatType) ||
-                other.repeatType == repeatType) &&
-            (identical(other.repeatValue, repeatValue) ||
-                other.repeatValue == repeatValue));
+            (identical(other.contents, contents) ||
+                other.contents == contents));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, uid, mainGoalId, subGoalId,
-      goal, repeatType, repeatValue);
+  int get hashCode => Object.hash(runtimeType, id, subGoalId, contents);
 
   @JsonKey(ignore: true)
   @override
@@ -245,29 +166,17 @@ class _$TaskImpl implements _Task {
 abstract class _Task implements Task {
   const factory _Task(
       {required final int id,
-      required final int uid,
-      required final int mainGoalId,
       required final int subGoalId,
-      required final String goal,
-      required final String repeatType,
-      required final String repeatValue}) = _$TaskImpl;
+      required final String contents}) = _$TaskImpl;
 
   factory _Task.fromJson(Map<String, dynamic> json) = _$TaskImpl.fromJson;
 
   @override
   int get id;
   @override
-  int get uid;
-  @override
-  int get mainGoalId;
-  @override
   int get subGoalId;
   @override
-  String get goal;
-  @override
-  String get repeatType;
-  @override
-  String get repeatValue;
+  String get contents;
   @override
   @JsonKey(ignore: true)
   _$$TaskImplCopyWith<_$TaskImpl> get copyWith =>

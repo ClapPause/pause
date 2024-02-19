@@ -6,11 +6,11 @@ class MainGoal with _$MainGoal {
   const factory MainGoal({
     required int id,
     required int uid,
-    required int selectColor,
-    required int backgroundColor,
+    required String goal,
+    required String color,
     required bool finish,
     required String deadline,
-    required String goal,
+    required String memo,
   }) = _MainGoal;
 
   factory MainGoal.fromJson(Map<String, Object?> json) =>

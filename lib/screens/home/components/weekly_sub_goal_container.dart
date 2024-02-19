@@ -4,8 +4,7 @@ import 'package:pause/models/sub_goal/sub_goal.dart';
 import 'package:pause/models/task/task.dart';
 import 'package:pause/screens/home/components/weekly_task_container.dart';
 import 'package:pause/services/task_service.dart';
-
-import '../../../utils/color_utils.dart';
+import '../../../constants/constants_enum.dart';
 
 class WeeklySubGoalContainer extends StatefulWidget {
   final MainGoal mainGoal;
@@ -32,7 +31,7 @@ class _WeeklySubGoalContainerState extends State<WeeklySubGoalContainer> {
           padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 18),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
-            color: getColor(widget.mainGoal.backgroundColor),
+            color:  PauseColorExtenstion.getTypes(widget.mainGoal.color).backgroundColor,
           ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
@@ -40,7 +39,7 @@ class _WeeklySubGoalContainerState extends State<WeeklySubGoalContainer> {
               Text(
                 "D-123 ${widget.subGoal.goal}",
                 style: TextStyle(
-                  color: getColor(widget.mainGoal.selectColor),
+                  color:  PauseColorExtenstion.getTypes(widget.mainGoal.color).color,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -49,7 +48,7 @@ class _WeeklySubGoalContainerState extends State<WeeklySubGoalContainer> {
                 behavior: HitTestBehavior.opaque,
                 child: Icon(
                   _showMore ? Icons.expand_less : Icons.expand_more,
-                  color: getColor(widget.mainGoal.selectColor),
+                  color:  PauseColorExtenstion.getTypes(widget.mainGoal.color).color,
                 ),
               ),
             ],

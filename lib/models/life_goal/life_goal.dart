@@ -5,6 +5,7 @@ part 'life_goal.freezed.dart';
 @freezed
 class LifeGoal with _$LifeGoal {
   const factory LifeGoal({
+    required int id,
     required int uid,
     required String goal,
   }) = _LifeGoal;

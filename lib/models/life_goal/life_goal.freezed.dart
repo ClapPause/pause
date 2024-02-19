@@ -20,6 +20,7 @@ LifeGoal _$LifeGoalFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$LifeGoal {
+  int get id => throw _privateConstructorUsedError;
   int get uid => throw _privateConstructorUsedError;
   String get goal => throw _privateConstructorUsedError;
 
@@ -34,7 +35,7 @@ abstract class $LifeGoalCopyWith<$Res> {
   factory $LifeGoalCopyWith(LifeGoal value, $Res Function(LifeGoal) then) =
       _$LifeGoalCopyWithImpl<$Res, LifeGoal>;
   @useResult
-  $Res call({int uid, String goal});
+  $Res call({int id, int uid, String goal});
 }
 
 /// @nodoc
@@ -50,10 +51,15 @@ class _$LifeGoalCopyWithImpl<$Res, $Val extends LifeGoal>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? uid = null,
     Object? goal = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       uid: null == uid
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
@@ -74,7 +80,7 @@ abstract class _$$LifeGoalImplCopyWith<$Res>
       __$$LifeGoalImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int uid, String goal});
+  $Res call({int id, int uid, String goal});
 }
 
 /// @nodoc
@@ -88,10 +94,15 @@ class __$$LifeGoalImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? uid = null,
     Object? goal = null,
   }) {
     return _then(_$LifeGoalImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       uid: null == uid
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
@@ -107,11 +118,14 @@ class __$$LifeGoalImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$LifeGoalImpl implements _LifeGoal {
-  const _$LifeGoalImpl({required this.uid, required this.goal});
+  const _$LifeGoalImpl(
+      {required this.id, required this.uid, required this.goal});
 
   factory _$LifeGoalImpl.fromJson(Map<String, dynamic> json) =>
       _$$LifeGoalImplFromJson(json);
 
+  @override
+  final int id;
   @override
   final int uid;
   @override
@@ -119,7 +133,7 @@ class _$LifeGoalImpl implements _LifeGoal {
 
   @override
   String toString() {
-    return 'LifeGoal(uid: $uid, goal: $goal)';
+    return 'LifeGoal(id: $id, uid: $uid, goal: $goal)';
   }
 
   @override
@@ -127,13 +141,14 @@ class _$LifeGoalImpl implements _LifeGoal {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LifeGoalImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.uid, uid) || other.uid == uid) &&
             (identical(other.goal, goal) || other.goal == goal));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, uid, goal);
+  int get hashCode => Object.hash(runtimeType, id, uid, goal);
 
   @JsonKey(ignore: true)
   @override
@@ -151,11 +166,15 @@ class _$LifeGoalImpl implements _LifeGoal {
 
 abstract class _LifeGoal implements LifeGoal {
   const factory _LifeGoal(
-      {required final int uid, required final String goal}) = _$LifeGoalImpl;
+      {required final int id,
+      required final int uid,
+      required final String goal}) = _$LifeGoalImpl;
 
   factory _LifeGoal.fromJson(Map<String, dynamic> json) =
       _$LifeGoalImpl.fromJson;
 
+  @override
+  int get id;
   @override
   int get uid;
   @override

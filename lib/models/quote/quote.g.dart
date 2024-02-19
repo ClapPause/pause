@@ -1,21 +1,18 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'life_goal.dart';
+part of 'quote.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$LifeGoalImpl _$$LifeGoalImplFromJson(Map<String, dynamic> json) =>
-    _$LifeGoalImpl(
+_$QuoteImpl _$$QuoteImplFromJson(Map<String, dynamic> json) => _$QuoteImpl(
       id: json['id'] as int,
-      uid: json['uid'] as int,
-      goal: json['goal'] as String,
+      title: json['title'] as String,
     );
 
-Map<String, dynamic> _$$LifeGoalImplToJson(_$LifeGoalImpl instance) =>
+Map<String, dynamic> _$$QuoteImplToJson(_$QuoteImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'uid': instance.uid,
-      'goal': instance.goal,
+      'title': instance.title,
     };

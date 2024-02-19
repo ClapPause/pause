@@ -5,7 +5,6 @@ part 'sub_goal.freezed.dart';
 class SubGoal with _$SubGoal {
   const factory SubGoal({
     required int id,
-    required int uid,
     required int mainGoalId,
     required String goal,
   }) = _SubGoal;

@@ -21,7 +21,6 @@ SubGoal _$SubGoalFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$SubGoal {
   int get id => throw _privateConstructorUsedError;
-  int get uid => throw _privateConstructorUsedError;
   int get mainGoalId => throw _privateConstructorUsedError;
   String get goal => throw _privateConstructorUsedError;
 
@@ -35,7 +34,7 @@ abstract class $SubGoalCopyWith<$Res> {
   factory $SubGoalCopyWith(SubGoal value, $Res Function(SubGoal) then) =
       _$SubGoalCopyWithImpl<$Res, SubGoal>;
   @useResult
-  $Res call({int id, int uid, int mainGoalId, String goal});
+  $Res call({int id, int mainGoalId, String goal});
 }
 
 /// @nodoc
@@ -52,7 +51,6 @@ class _$SubGoalCopyWithImpl<$Res, $Val extends SubGoal>
   @override
   $Res call({
     Object? id = null,
-    Object? uid = null,
     Object? mainGoalId = null,
     Object? goal = null,
   }) {
@@ -60,10 +58,6 @@ class _$SubGoalCopyWithImpl<$Res, $Val extends SubGoal>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      uid: null == uid
-          ? _value.uid
-          : uid // ignore: cast_nullable_to_non_nullable
               as int,
       mainGoalId: null == mainGoalId
           ? _value.mainGoalId
@@ -84,7 +78,7 @@ abstract class _$$SubGoalImplCopyWith<$Res> implements $SubGoalCopyWith<$Res> {
       __$$SubGoalImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, int uid, int mainGoalId, String goal});
+  $Res call({int id, int mainGoalId, String goal});
 }
 
 /// @nodoc
@@ -99,7 +93,6 @@ class __$$SubGoalImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? uid = null,
     Object? mainGoalId = null,
     Object? goal = null,
   }) {
@@ -107,10 +100,6 @@ class __$$SubGoalImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      uid: null == uid
-          ? _value.uid
-          : uid // ignore: cast_nullable_to_non_nullable
               as int,
       mainGoalId: null == mainGoalId
           ? _value.mainGoalId
@@ -128,10 +117,7 @@ class __$$SubGoalImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SubGoalImpl implements _SubGoal {
   const _$SubGoalImpl(
-      {required this.id,
-      required this.uid,
-      required this.mainGoalId,
-      required this.goal});
+      {required this.id, required this.mainGoalId, required this.goal});
 
   factory _$SubGoalImpl.fromJson(Map<String, dynamic> json) =>
       _$$SubGoalImplFromJson(json);
@@ -139,15 +125,13 @@ class _$SubGoalImpl implements _SubGoal {
   @override
   final int id;
   @override
-  final int uid;
-  @override
   final int mainGoalId;
   @override
   final String goal;
 
   @override
   String toString() {
-    return 'SubGoal(id: $id, uid: $uid, mainGoalId: $mainGoalId, goal: $goal)';
+    return 'SubGoal(id: $id, mainGoalId: $mainGoalId, goal: $goal)';
   }
 
   @override
@@ -156,7 +140,6 @@ class _$SubGoalImpl implements _SubGoal {
         (other.runtimeType == runtimeType &&
             other is _$SubGoalImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.uid, uid) || other.uid == uid) &&
             (identical(other.mainGoalId, mainGoalId) ||
                 other.mainGoalId == mainGoalId) &&
             (identical(other.goal, goal) || other.goal == goal));
@@ -164,7 +147,7 @@ class _$SubGoalImpl implements _SubGoal {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, uid, mainGoalId, goal);
+  int get hashCode => Object.hash(runtimeType, id, mainGoalId, goal);
 
   @JsonKey(ignore: true)
   @override
@@ -183,7 +166,6 @@ class _$SubGoalImpl implements _SubGoal {
 abstract class _SubGoal implements SubGoal {
   const factory _SubGoal(
       {required final int id,
-      required final int uid,
       required final int mainGoalId,
       required final String goal}) = _$SubGoalImpl;
 
@@ -191,8 +173,6 @@ abstract class _SubGoal implements SubGoal {
 
   @override
   int get id;
-  @override
-  int get uid;
   @override
   int get mainGoalId;
   @override

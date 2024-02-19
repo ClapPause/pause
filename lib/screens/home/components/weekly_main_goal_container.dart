@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:pause/constants/constants_enum.dart';
 import 'package:pause/models/main_goal/main_goal.dart';
 import 'package:pause/models/sub_goal/sub_goal.dart';
 import 'package:pause/screens/home/components/weekly_sub_goal_container.dart';
-
 import '../../../services/sub_goal_service.dart';
-import '../../../utils/color_utils.dart';
 
 class WeeklyMainGoalContainer extends StatefulWidget {
   final MainGoal mainGoal;
@@ -33,7 +32,7 @@ class _WeeklyMainGoalContainerState extends State<WeeklyMainGoalContainer> {
                 '# ${widget.mainGoal.goal}',
                 style: TextStyle(
                   fontSize: 16,
-                  color: getColor(widget.mainGoal.selectColor),
+                  color:  PauseColorExtenstion.getTypes(widget.mainGoal.color).color,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -43,7 +42,7 @@ class _WeeklyMainGoalContainerState extends State<WeeklyMainGoalContainer> {
                 behavior: HitTestBehavior.opaque,
                 child: Icon(
                   _showMore ? Icons.expand_less : Icons.expand_more,
-                  color: getColor(widget.mainGoal.selectColor),
+                  color: PauseColorExtenstion.getTypes(widget.mainGoal.color).color,
                 ),
               ),
             ],

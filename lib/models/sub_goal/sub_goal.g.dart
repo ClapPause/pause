@@ -9,7 +9,6 @@ part of 'sub_goal.dart';
 _$SubGoalImpl _$$SubGoalImplFromJson(Map<String, dynamic> json) =>
     _$SubGoalImpl(
       id: json['id'] as int,
-      uid: json['uid'] as int,
       mainGoalId: json['mainGoalId'] as int,
       goal: json['goal'] as String,
     );
@@ -17,7 +16,6 @@ _$SubGoalImpl _$$SubGoalImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$SubGoalImplToJson(_$SubGoalImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'uid': instance.uid,
       'mainGoalId': instance.mainGoalId,
       'goal': instance.goal,
     };

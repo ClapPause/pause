@@ -5,12 +5,8 @@ part 'task.freezed.dart';
 class Task with _$Task {
   const factory Task({
     required int id,
-    required int uid,
-    required int mainGoalId,
     required int subGoalId,
-    required String goal,
-    required String repeatType,
-    required String repeatValue,
+    required String contents,
   }) = _Task;
 
   factory Task.fromJson(Map<String, Object?> json) =>

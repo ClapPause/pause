@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pause/models/main_goal/main_goal.dart';
 import 'package:pause/models/task/task.dart';
+import '../../../constants/constants_enum.dart';
 
-import '../../../utils/color_utils.dart';
 
 class WeeklyTaskContainer extends StatefulWidget {
   final MainGoal mainGoal;
@@ -39,7 +39,7 @@ class _WeeklyTaskContainerState extends State<WeeklyTaskContainer> {
             width: 6,
             height: 38,
             decoration: BoxDecoration(
-              color: getColor(widget.mainGoal.selectColor),
+              color:  PauseColorExtenstion.getTypes(widget.mainGoal.color).color,
               borderRadius: BorderRadius.circular(4),
             ),
           ),
@@ -50,7 +50,7 @@ class _WeeklyTaskContainerState extends State<WeeklyTaskContainer> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  widget.task.goal,
+                  widget.task.contents,
                   style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
@@ -69,7 +69,7 @@ class _WeeklyTaskContainerState extends State<WeeklyTaskContainer> {
           Checkbox(
             value: _value,
             onChanged: (value) => setState(() => _value = value ?? false),
-            activeColor: getColor(widget.mainGoal.selectColor),
+            activeColor:  PauseColorExtenstion.getTypes(widget.mainGoal.color).color,
             side: const BorderSide(
               width: 0.5,
             ),

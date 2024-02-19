@@ -22,11 +22,11 @@ MainGoal _$MainGoalFromJson(Map<String, dynamic> json) {
 mixin _$MainGoal {
   int get id => throw _privateConstructorUsedError;
   int get uid => throw _privateConstructorUsedError;
-  int get selectColor => throw _privateConstructorUsedError;
-  int get backgroundColor => throw _privateConstructorUsedError;
+  String get goal => throw _privateConstructorUsedError;
+  String get color => throw _privateConstructorUsedError;
   bool get finish => throw _privateConstructorUsedError;
   String get deadline => throw _privateConstructorUsedError;
-  String get goal => throw _privateConstructorUsedError;
+  String get memo => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,11 +42,11 @@ abstract class $MainGoalCopyWith<$Res> {
   $Res call(
       {int id,
       int uid,
-      int selectColor,
-      int backgroundColor,
+      String goal,
+      String color,
       bool finish,
       String deadline,
-      String goal});
+      String memo});
 }
 
 /// @nodoc
@@ -64,11 +64,11 @@ class _$MainGoalCopyWithImpl<$Res, $Val extends MainGoal>
   $Res call({
     Object? id = null,
     Object? uid = null,
-    Object? selectColor = null,
-    Object? backgroundColor = null,
+    Object? goal = null,
+    Object? color = null,
     Object? finish = null,
     Object? deadline = null,
-    Object? goal = null,
+    Object? memo = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -79,14 +79,14 @@ class _$MainGoalCopyWithImpl<$Res, $Val extends MainGoal>
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
               as int,
-      selectColor: null == selectColor
-          ? _value.selectColor
-          : selectColor // ignore: cast_nullable_to_non_nullable
-              as int,
-      backgroundColor: null == backgroundColor
-          ? _value.backgroundColor
-          : backgroundColor // ignore: cast_nullable_to_non_nullable
-              as int,
+      goal: null == goal
+          ? _value.goal
+          : goal // ignore: cast_nullable_to_non_nullable
+              as String,
+      color: null == color
+          ? _value.color
+          : color // ignore: cast_nullable_to_non_nullable
+              as String,
       finish: null == finish
           ? _value.finish
           : finish // ignore: cast_nullable_to_non_nullable
@@ -95,9 +95,9 @@ class _$MainGoalCopyWithImpl<$Res, $Val extends MainGoal>
           ? _value.deadline
           : deadline // ignore: cast_nullable_to_non_nullable
               as String,
-      goal: null == goal
-          ? _value.goal
-          : goal // ignore: cast_nullable_to_non_nullable
+      memo: null == memo
+          ? _value.memo
+          : memo // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -114,11 +114,11 @@ abstract class _$$MainGoalImplCopyWith<$Res>
   $Res call(
       {int id,
       int uid,
-      int selectColor,
-      int backgroundColor,
+      String goal,
+      String color,
       bool finish,
       String deadline,
-      String goal});
+      String memo});
 }
 
 /// @nodoc
@@ -134,11 +134,11 @@ class __$$MainGoalImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? uid = null,
-    Object? selectColor = null,
-    Object? backgroundColor = null,
+    Object? goal = null,
+    Object? color = null,
     Object? finish = null,
     Object? deadline = null,
-    Object? goal = null,
+    Object? memo = null,
   }) {
     return _then(_$MainGoalImpl(
       id: null == id
@@ -149,14 +149,14 @@ class __$$MainGoalImplCopyWithImpl<$Res>
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
               as int,
-      selectColor: null == selectColor
-          ? _value.selectColor
-          : selectColor // ignore: cast_nullable_to_non_nullable
-              as int,
-      backgroundColor: null == backgroundColor
-          ? _value.backgroundColor
-          : backgroundColor // ignore: cast_nullable_to_non_nullable
-              as int,
+      goal: null == goal
+          ? _value.goal
+          : goal // ignore: cast_nullable_to_non_nullable
+              as String,
+      color: null == color
+          ? _value.color
+          : color // ignore: cast_nullable_to_non_nullable
+              as String,
       finish: null == finish
           ? _value.finish
           : finish // ignore: cast_nullable_to_non_nullable
@@ -165,9 +165,9 @@ class __$$MainGoalImplCopyWithImpl<$Res>
           ? _value.deadline
           : deadline // ignore: cast_nullable_to_non_nullable
               as String,
-      goal: null == goal
-          ? _value.goal
-          : goal // ignore: cast_nullable_to_non_nullable
+      memo: null == memo
+          ? _value.memo
+          : memo // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -179,11 +179,11 @@ class _$MainGoalImpl implements _MainGoal {
   const _$MainGoalImpl(
       {required this.id,
       required this.uid,
-      required this.selectColor,
-      required this.backgroundColor,
+      required this.goal,
+      required this.color,
       required this.finish,
       required this.deadline,
-      required this.goal});
+      required this.memo});
 
   factory _$MainGoalImpl.fromJson(Map<String, dynamic> json) =>
       _$$MainGoalImplFromJson(json);
@@ -193,19 +193,19 @@ class _$MainGoalImpl implements _MainGoal {
   @override
   final int uid;
   @override
-  final int selectColor;
+  final String goal;
   @override
-  final int backgroundColor;
+  final String color;
   @override
   final bool finish;
   @override
   final String deadline;
   @override
-  final String goal;
+  final String memo;
 
   @override
   String toString() {
-    return 'MainGoal(id: $id, uid: $uid, selectColor: $selectColor, backgroundColor: $backgroundColor, finish: $finish, deadline: $deadline, goal: $goal)';
+    return 'MainGoal(id: $id, uid: $uid, goal: $goal, color: $color, finish: $finish, deadline: $deadline, memo: $memo)';
   }
 
   @override
@@ -215,20 +215,18 @@ class _$MainGoalImpl implements _MainGoal {
             other is _$MainGoalImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.uid, uid) || other.uid == uid) &&
-            (identical(other.selectColor, selectColor) ||
-                other.selectColor == selectColor) &&
-            (identical(other.backgroundColor, backgroundColor) ||
-                other.backgroundColor == backgroundColor) &&
+            (identical(other.goal, goal) || other.goal == goal) &&
+            (identical(other.color, color) || other.color == color) &&
             (identical(other.finish, finish) || other.finish == finish) &&
             (identical(other.deadline, deadline) ||
                 other.deadline == deadline) &&
-            (identical(other.goal, goal) || other.goal == goal));
+            (identical(other.memo, memo) || other.memo == memo));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, uid, selectColor,
-      backgroundColor, finish, deadline, goal);
+  int get hashCode =>
+      Object.hash(runtimeType, id, uid, goal, color, finish, deadline, memo);
 
   @JsonKey(ignore: true)
   @override
@@ -248,11 +246,11 @@ abstract class _MainGoal implements MainGoal {
   const factory _MainGoal(
       {required final int id,
       required final int uid,
-      required final int selectColor,
-      required final int backgroundColor,
+      required final String goal,
+      required final String color,
       required final bool finish,
       required final String deadline,
-      required final String goal}) = _$MainGoalImpl;
+      required final String memo}) = _$MainGoalImpl;
 
   factory _MainGoal.fromJson(Map<String, dynamic> json) =
       _$MainGoalImpl.fromJson;
@@ -262,15 +260,15 @@ abstract class _MainGoal implements MainGoal {
   @override
   int get uid;
   @override
-  int get selectColor;
+  String get goal;
   @override
-  int get backgroundColor;
+  String get color;
   @override
   bool get finish;
   @override
   String get deadline;
   @override
-  String get goal;
+  String get memo;
   @override
   @JsonKey(ignore: true)
   _$$MainGoalImplCopyWith<_$MainGoalImpl> get copyWith =>

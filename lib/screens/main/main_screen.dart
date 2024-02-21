@@ -86,11 +86,6 @@ class _MainScreenState extends State<MainScreen> {
                   inactiveImage: 'assets/icon/2_inactive.svg',
                   index: 1,
                 ),
-                kBottomNavigationBarItem(
-                  activeImage: 'assets/icon/3_active.svg',
-                  inactiveImage: 'assets/icon/3_inactive.svg',
-                  index: 2,
-                ),
               ],
             ),
           ),

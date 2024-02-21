@@ -7,7 +7,7 @@ class CustomTextField extends StatefulWidget {
   final Function textChanged;
   final int? maxLength;
   final TextInputType? inputType;
-  final bool obscureText;
+  final bool showObscureText;
 
   const CustomTextField({
     Key? key,
@@ -16,7 +16,7 @@ class CustomTextField extends StatefulWidget {
     required this.textChanged,
     this.maxLength,
     this.inputType,
-    this.obscureText = false,
+    this.showObscureText = false,
     required void Function() showClicked,
   }) : super(key: key);
 
@@ -42,48 +42,53 @@ class _CustomTextFieldState extends State<CustomTextField> {
           color: kTextFieldBorderColor,
         ),
       ),
-      child: TextField(
-        controller: widget.controller,
-        keyboardType: widget.inputType,
-        maxLength: widget.maxLength,
-        obscureText: widget.obscureText && !_showPassword,
-        decoration: InputDecoration(
-          border: InputBorder.none,
-          enabledBorder: InputBorder.none,
-          focusedBorder: InputBorder.none,
-          isDense: true,
-          counterText: '',
-          hintText: widget.hintText,
-          hintStyle: TextStyle(
-            fontSize: 16,
-            color: kTextFieldHintColor,
-            height: 20 / 16,
+      child: Row(
+        children: [
+          Expanded(
+            child: TextField(
+              controller: widget.controller,
+              keyboardType: widget.inputType,
+              maxLength: widget.maxLength,
+              obscureText: widget.showObscureText && !_showPassword,
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                enabledBorder: InputBorder.none,
+                focusedBorder: InputBorder.none,
+                isDense: true,
+                counterText: '',
+                hintText: widget.hintText,
+                hintStyle: TextStyle(
+                  fontSize: 16,
+                  color: kTextFieldHintColor,
+                  height: 20 / 16,
+                ),
+              ),
+              onChanged: (text) => widget.textChanged(text),
+              style: TextStyle(
+                fontSize: 16,
+                color: kBlack300,
+                height: 20 / 16,
+              ),
+            ),
           ),
-          suffix: widget.obscureText
-              ? GestureDetector(
-                  behavior: HitTestBehavior.opaque,
-                  onTap: () {
-                    setState(() {
-                      _showPassword = !_showPassword;
-                    });
-                  },
-                  child: Text(
-                    _showPassword ? 'Hide' : 'Show',
-                    style: TextStyle(
-                      color: kPrimaryColor,
-                      fontSize: 16,
-                      height: 20 / 16,
-                    ),
-                  ),
-                )
-              : null,
-        ),
-        onChanged: (text) => widget.textChanged(text),
-        style: TextStyle(
-          fontSize: 16,
-          color: kBlack300,
-          height: 20 / 16,
-        ),
+          if(widget.showObscureText)
+          GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: () {
+              setState(() {
+                _showPassword = !_showPassword;
+              });
+            },
+            child: Text(
+              _showPassword ? 'Hide' : 'Show',
+              style: TextStyle(
+                color: kPrimaryColor,
+                fontSize: 16,
+                height: 20 / 16,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

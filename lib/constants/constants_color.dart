@@ -5,6 +5,7 @@ Color kSecondaryColor = const Color(0xFFFFA5A5);
 Color kTertiaryColor = const Color(0xFFA9A3FF);
 Color kBlackColor = const Color(0xFF000000);
 Color kWhiteColor = const Color(0xFFFFFFFF);
+Color kKakaoColor = const Color(0xFFFEE500);
 
 Color kBlack100 = const Color(0xFFCCCCCC);
 Color kBlack200 = const Color(0xFF999999);

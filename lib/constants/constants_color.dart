@@ -13,10 +13,14 @@ Color kBlack300 = const Color(0xFF666666);
 Color kBlack400 = const Color(0xFF333333);
 
 Color kBoxBorderColor = const Color(0xFFF2F2FA);
+Color kCheckBoxBorderColor = const Color(0xFFDCDCE2);
 Color kFontColor = const Color(0xFF414141);
 
 
 Color kTextFieldHintColor = const Color(0xFFBDBDBD);
 Color kTextFieldBorderColor = const Color(0xFFE8E8E8);
 
+Color kBlurColor = const Color(0x14000000);
+
+Color kFlushBarBackgroundColor = const Color(0xFF323232);
 

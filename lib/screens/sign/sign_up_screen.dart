@@ -7,6 +7,7 @@ import 'package:pause/screens/sign/sign_up_email_screen.dart';
 import '../../constants/constants_color.dart';
 import '../../utils/sign_in_utils.dart';
 import '../../widgets/custom_action_button.dart';
+import '../../widgets/custom_outlined_action_button.dart';
 import '../../widgets/custom_social_sign_in_button.dart';
 import '../main/main_screen.dart';
 import 'find_password_screen.dart';
@@ -25,7 +26,7 @@ class SignUpScreen extends StatelessWidget {
             width: 236,
             height: 85,
             child: Image.asset(
-              'assets/logo/pause_logo.png',
+              'assets/logo/sign_pause_logo.png',
             ),
           ),
           Row(
@@ -61,33 +62,14 @@ class SignUpScreen extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 40),
-          GestureDetector(
+          CustomOutlinedActionButton(
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => const SignUpEmailScreen(),
               ),
             ),
-            behavior: HitTestBehavior.opaque,
-            child: Container(
-              alignment: Alignment.center,
-              width: 300,
-              height: 55,
-              decoration: BoxDecoration(
-                color: kWhiteColor,
-                borderRadius: BorderRadius.circular(100),
-                border: Border.all(color: kPrimaryColor),
-              ),
-              child: Text(
-                '이메일로 계속하기',
-                style: TextStyle(
-                  fontSize: 16,
-                  height: 20 / 16,
-                  color: kPrimaryColor,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
+            text: '이메일로 계속하기',
           ),
           const SizedBox(height: 12),
           GestureDetector(
@@ -96,7 +78,7 @@ class SignUpScreen extends StatelessWidget {
             child: Container(
               alignment: Alignment.center,
               width: 300,
-              height: 55,
+              height: 50,
               decoration: BoxDecoration(
                 color: kKakaoColor,
                 borderRadius: BorderRadius.circular(100),

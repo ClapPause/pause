@@ -34,6 +34,8 @@ dependencies:
   sign_in_with_apple: ^5.0.0
   # 구글 로그인
   google_sign_in: ^6.2.1
+  # 안내메시지
+  another_flushbar: ^1.12.30
 
 dev_dependencies:
   flutter_test:

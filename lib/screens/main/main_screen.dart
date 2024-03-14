@@ -29,68 +29,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        foregroundColor: kPrimaryColor,
-        backgroundColor: kWhiteColor,
-        surfaceTintColor: kWhiteColor,
-        automaticallyImplyLeading: false,
-        centerTitle: false,
-        titleSpacing: 20,
-        leading: SizedBox(
-          width: 22,
-          height: 22,
-          child: SvgPicture.asset(
-            'assets/icon/statistics.svg',
-            fit: BoxFit.scaleDown,
-          ),
-        ),
-        title: Container(
-          alignment: Alignment.center,
-          height: 50,
-          child: Image.asset(
-            'assets/logo/pause_logo.png',
-            fit: BoxFit.fitHeight,
-          ),
-        ),
-        actions: [
-          Container(
-            alignment: Alignment.center,
-            width: 24,
-            height: 25,
-            child: Image.asset(
-              'assets/icon/my_page.png',
-              fit: BoxFit.scaleDown,
-            ),
-          ),
-          const SizedBox(width: 20),
-        ],
-      ),
-      backgroundColor: kWhiteColor,
-      body: getScreen(),
-      bottomNavigationBar: Container(
-        color: kWhiteColor,
-        child: SafeArea(
-          child: Container(
-            color: kWhiteColor,
-            width: double.infinity,
-            height: 68,
-            child: Row(
-              children: [
-                kBottomNavigationBarItem(
-                  activeImage: 'assets/icon/1_active.svg',
-                  inactiveImage: 'assets/icon/1_inactive.svg',
-                  index: 0,
-                ),
-                kBottomNavigationBarItem(
-                  activeImage: 'assets/icon/2_active.svg',
-                  inactiveImage: 'assets/icon/2_inactive.svg',
-                  index: 1,
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
+
     );
   }
 

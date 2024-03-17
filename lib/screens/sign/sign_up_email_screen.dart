@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:pause/constants/constants_color.dart';
 import 'package:pause/constants/constants_reg.dart';
 import 'package:pause/screens/sign/login_screen.dart';
+import 'package:pause/screens/sign/sign_up_name_screen.dart';
+import 'package:pause/services/sign_service.dart';
 import 'package:pause/utils/local_utils.dart';
 import 'package:pause/widgets/custom_action_button.dart';
 
@@ -65,7 +67,7 @@ class _SignUpEmailScreenState extends State<SignUpEmailScreen> {
               width: 236,
               height: 85,
               child: Image.asset(
-                'assets/logo/pause_logo.png',
+                'assets/logo/sign_pause_logo.png',
               ),
             ),
             Row(
@@ -105,7 +107,6 @@ class _SignUpEmailScreenState extends State<SignUpEmailScreen> {
             CustomTextField(
               controller: _emailController,
               hintText: '이메일 주소',
-              textChanged: (text) => setState(() {}),
               inputType: TextInputType.emailAddress,
               showObscureText: false,
               showClicked: () {},
@@ -114,7 +115,6 @@ class _SignUpEmailScreenState extends State<SignUpEmailScreen> {
             CustomTextField(
               controller: _passwordController,
               hintText: '비밀번호 ( 영문, 숫자 혼합 8자이상 )',
-              textChanged: (text) => setState(() {}),
               showObscureText: true,
               showClicked: () => setState(() => _showPassword = !_showPassword),
             ),
@@ -122,7 +122,6 @@ class _SignUpEmailScreenState extends State<SignUpEmailScreen> {
             CustomTextField(
               controller: _passwordCheckController,
               hintText: '비밀번호확인',
-              textChanged: (text) => setState(() {}),
               showObscureText: true,
               showClicked: () =>
                   setState(() => _showPasswordCheck = !_showPasswordCheck),
@@ -234,7 +233,7 @@ class _SignUpEmailScreenState extends State<SignUpEmailScreen> {
             ),
             child: CustomActionButton(
               text: '회원가입',
-              onTap: () {
+              onTap: () async{
                 if (!kEmailRegExp.hasMatch(_emailController.text)) {
                   showMessage(context, message: "이메일을 다시 한번 확인해 주세요.");
                   return;
@@ -247,7 +246,29 @@ class _SignUpEmailScreenState extends State<SignUpEmailScreen> {
                   showMessage(context, message: "비밀번호가 일치하지 않습니다.");
                   return;
                 }
-                // next
+                if (!_agreeTermsOfUse) {
+                  showMessage(context, message: "퍼즈 이용 약관에 동의해야 가입할 수 있습니다.");
+                  return;
+                }
+                if (!_agreeCollectPersonalInformation) {
+                  showMessage(context,
+                      message: "개인정보 수집 및 이용에 동의해야 가입할 수 있습니다.");
+                  return;
+                }
+                if(await SignService.isSignedUser(_emailController.text)&&context.mounted){
+                  showMessage(context,
+                      message: "이미 가입된 이메일 입니다. 로그인을 진행해 주세요.");
+                  return;
+                }
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>  SignUpNameScreen(
+                      email: _emailController.text,
+                      password: _passwordController.text,
+                    ),
+                  ),
+                );
               },
             ),
           ),

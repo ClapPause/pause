@@ -1,12 +1,17 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:pause/constants/constants_color.dart';
+import 'package:pause/controllers/user_controller.dart';
 import 'package:pause/screens/main/main_screen.dart';
 import 'package:pause/screens/sign/find_password_screen.dart';
 import 'package:pause/screens/sign/sign_up_screen.dart';
+import 'package:pause/services/sign_service.dart';
+import 'package:pause/utils/local_utils.dart';
 import 'package:pause/widgets/custom_action_button.dart';
 import 'package:pause/widgets/custom_text_field.dart';
+import 'package:provider/provider.dart';
 
+import '../../models/user/user.dart';
 import '../../utils/sign_in_utils.dart';
 import '../../widgets/custom_social_sign_in_button.dart';
 
@@ -26,7 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: ()=>FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: kWhiteColor,
@@ -56,7 +61,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   onTap: () {
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => const SignUpScreen()),
+                      MaterialPageRoute(
+                          builder: (context) => const SignUpScreen()),
                     );
                   },
                   child: Text(
@@ -75,7 +81,6 @@ class _LoginScreenState extends State<LoginScreen> {
             CustomTextField(
               controller: _emailController,
               hintText: '이메일 주소',
-              textChanged: (text) => setState(() {}),
               inputType: TextInputType.emailAddress,
               showObscureText: false,
               showClicked: () {},
@@ -84,18 +89,27 @@ class _LoginScreenState extends State<LoginScreen> {
             CustomTextField(
               controller: _passwordController,
               hintText: '비밀번호',
-              textChanged: (text) => setState(() {}),
               showObscureText: true,
               showClicked: () => setState(() => _showPassword = !_showPassword),
             ),
             const SizedBox(height: 27),
             CustomActionButton(
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const MainScreen(),
-                ),
-              ),
+              onTap: () async {
+                User? user = await SignService.localSignIn(
+                    _emailController.text, _passwordController.text);
+                if (!context.mounted) return;
+                if (user == null) {
+                  showMessage(context, message: '이메일 주소와 비밀번호를 다시 한번 확인해 주세요.');
+                  return;
+                }
+                context.read<UserController>().signIn(user);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const MainScreen(),
+                  ),
+                );
+              },
               // onTap: () => loginWithEmailAndPassword(),
               text: '로그인 하기',
             ),
@@ -149,10 +163,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(width: 4),
                 GestureDetector(
                   onTap: () {
-                    Navigator.push(
+                    Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(
                           builder: (context) => const FindPasswordScreen()),
+                      (route) => false,
                     );
                   },
                   child: Text(

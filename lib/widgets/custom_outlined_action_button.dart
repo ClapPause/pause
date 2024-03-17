@@ -19,7 +19,8 @@ class CustomOutlinedActionButton extends StatelessWidget {
       behavior: HitTestBehavior.opaque,
       child: Container(
         alignment: Alignment.center,
-        width: 300,
+        margin: const EdgeInsets.symmetric(horizontal: 45),
+        width: double.infinity,
         height: 50,
         decoration: BoxDecoration(
           color: kWhiteColor,

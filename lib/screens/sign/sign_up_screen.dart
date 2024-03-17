@@ -1,16 +1,11 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:pause/screens/sign/login_screen.dart';
 import 'package:pause/screens/sign/sign_up_email_screen.dart';
-
 import '../../constants/constants_color.dart';
 import '../../utils/sign_in_utils.dart';
-import '../../widgets/custom_action_button.dart';
 import '../../widgets/custom_outlined_action_button.dart';
 import '../../widgets/custom_social_sign_in_button.dart';
-import '../main/main_screen.dart';
-import 'find_password_screen.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -77,7 +72,8 @@ class SignUpScreen extends StatelessWidget {
             behavior: HitTestBehavior.opaque,
             child: Container(
               alignment: Alignment.center,
-              width: 300,
+              margin: const EdgeInsets.symmetric(horizontal: 45),
+              width: double.infinity,
               height: 50,
               decoration: BoxDecoration(
                 color: kKakaoColor,

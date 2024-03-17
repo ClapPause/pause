@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:pause/controllers/user_controller.dart';
 import 'package:pause/screens/home/home_screen.dart';
+import 'package:pause/screens/sign/login_screen.dart';
+import 'package:provider/provider.dart';
 import '../../constants/constants_color.dart';
 
 class MainScreen extends StatefulWidget {
@@ -28,9 +31,25 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-
-    );
+    return Consumer<UserController>(builder: (context, controller, child) {
+      if (controller.user == null) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const LoginScreen(),
+          ),
+        );
+      }
+      return Scaffold(
+        backgroundColor: kWhiteColor,
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('메인화면, ${controller.user!.name}'),
+          ],
+        ),
+      );
+    });
   }
 
   Widget kBottomNavigationBarItem(

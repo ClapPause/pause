@@ -4,7 +4,6 @@ import 'package:pause/constants/constants_color.dart';
 class CustomTextField extends StatefulWidget {
   final TextEditingController controller;
   final String hintText;
-  final Function textChanged;
   final int? maxLength;
   final TextInputType? inputType;
   final bool showObscureText;
@@ -13,7 +12,6 @@ class CustomTextField extends StatefulWidget {
     Key? key,
     required this.controller,
     required this.hintText,
-    required this.textChanged,
     this.maxLength,
     this.inputType,
     this.showObscureText = false,
@@ -32,8 +30,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
+      margin: const EdgeInsets.symmetric(horizontal: 45),
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      width: 300,
+      width: double.infinity,
       height: 50,
       decoration: BoxDecoration(
         color: kWhiteColor,
@@ -63,7 +62,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
                   height: 20 / 14,
                 ),
               ),
-              onChanged: (text) => widget.textChanged(text),
               style: TextStyle(
                 fontSize: 14,
                 color: kBlack300,

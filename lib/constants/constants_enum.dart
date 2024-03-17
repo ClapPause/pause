@@ -1,0 +1,1 @@
+enum SignInReturn { success, failed, duplicated}

@@ -1,12 +1,13 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_naver_login/flutter_naver_login.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:pause/controllers/user_controller.dart';
-import 'package:pause/models/user/user.dart' as modelUser;
+import 'package:pause/models/user/user.dart' as model_user;
 import 'package:pause/screens/main/main_screen.dart';
 import 'package:pause/screens/sign/sign_up_name_screen.dart';
 import 'package:pause/services/sign_service.dart';
@@ -96,11 +97,19 @@ void socialSignIn(BuildContext context, String email) async {
     );
     return;
   }
-  modelUser.User?  user = await SignService.socialSignIn(email);
+  model_user.User?  user = await SignService.socialSignIn(email);
   if(user==null || !context.mounted) return;
   context.read<UserController>().signIn(user);
   Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(builder: (context) => const MainScreen()),
       (route) => false);
+}
+
+String getNewCertificationNumber() {
+  String newCertificationNumber = '';
+  for (int i = 0; i < 6; i++) {
+    newCertificationNumber += math.Random().nextInt(10).toString();
+  }
+  return newCertificationNumber;
 }

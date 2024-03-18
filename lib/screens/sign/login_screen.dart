@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:pause/constants/constants_color.dart';
+import 'package:pause/constants/constants_reg.dart';
 import 'package:pause/controllers/user_controller.dart';
 import 'package:pause/screens/main/main_screen.dart';
 import 'package:pause/screens/sign/find_password_screen.dart';
@@ -95,6 +96,14 @@ class _LoginScreenState extends State<LoginScreen> {
             const SizedBox(height: 27),
             CustomActionButton(
               onTap: () async {
+                if (!kEmailRegExp.hasMatch(_emailController.text)) {
+                  showMessage(context, message: "이메일을 다시 한번 확인해 주세요.");
+                  return;
+                }
+                if (!kPasswordRegExp.hasMatch(_passwordController.text)) {
+                  showMessage(context, message: "비밀번호 형식을 다시 한번 확인해 주세요.");
+                  return;
+                }
                 User? user = await SignService.localSignIn(
                     _emailController.text, _passwordController.text);
                 if (!context.mounted) return;
@@ -103,11 +112,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   return;
                 }
                 context.read<UserController>().signIn(user);
-                Navigator.push(
+                Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
                     builder: (context) => const MainScreen(),
                   ),
+                  (route) => false,
                 );
               },
               // onTap: () => loginWithEmailAndPassword(),
@@ -162,14 +172,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(width: 4),
                 GestureDetector(
-                  onTap: () {
-                    Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const FindPasswordScreen()),
-                      (route) => false,
-                    );
-                  },
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const FindPasswordScreen()),
+                  ),
                   child: Text(
                     '비밀번호찾기',
                     style: TextStyle(

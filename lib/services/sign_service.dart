@@ -56,18 +56,45 @@ class SignService {
     }
   }
 
-  static Future<User?> signUp(String email,String password,String name)async{
+  static Future<User?> signUp(
+      String email, String password, String name) async {
     try {
       String? id = await DataService.getId(name: collection);
-      if(id==null) return null;
-      if(await isSignedUser(email)) return null;
+      if (id == null) return null;
+      if (await isSignedUser(email)) return null;
       User user = User(id: id, email: email, name: name, password: password);
       await FirebaseService.fireStore
-          .collection(collection).doc(id).set(user.toJson());
+          .collection(collection)
+          .doc(id)
+          .set(user.toJson());
       return user;
     } catch (error) {
       log('Error signUp : $error');
-       return null;
+      return null;
+    }
+  }
+
+  static Future<ServiceReturnType> resetPassword(
+      String email, String password) async {
+    try {
+      final snapshot = await FirebaseService.fireStore
+          .collection(collection)
+          .where('email', isEqualTo: email)
+          .get();
+      await FirebaseService.fireStore.runTransaction((transaction) async {
+        for (var document in snapshot.docs) {
+          if (document.get('password') == 'social') {
+            throw Exception('소셜 로그인으로 가입된 계정입니다.');
+          }
+          transaction.update(
+              FirebaseService.fireStore.collection(collection).doc(document.id),
+              {'password': password});
+        }
+      });
+      return ServiceReturnType.success;
+    } catch (error) {
+      log(error.toString());
+      return ServiceReturnType.error;
     }
   }
 }

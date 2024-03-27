@@ -5,8 +5,6 @@ import 'package:pause/models/user/user.dart';
 import 'package:pause/screens/sign/login_screen.dart';
 import 'package:pause/widgets/custom_action_button.dart';
 
-import '../../constants/constants_reg.dart';
-
 class WelcomeScreen extends StatelessWidget {
   final User user;
 

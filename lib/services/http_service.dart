@@ -1,9 +1,5 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'package:http/http.dart' as http;
-import '../constants/constants_enum.dart';
-import '../constants/constants_value.dart';
-import '../utils/local_utils.dart';
 
 class HttpService {
   static Future<void> sendEmail({

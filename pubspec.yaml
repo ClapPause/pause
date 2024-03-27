@@ -17,11 +17,11 @@ dependencies:
   # 데이터 모델링 자동화 라이브러리
   json_annotation: ^4.8.1
   # 파이어베이스 관련 라이브러리
-  firebase_core: ^2.24.2
-  cloud_firestore: ^4.14.0
-  firebase_storage: ^11.6.0
+  cloud_firestore: ^4.15.10
+  firebase_core: ^2.27.2
+  firebase_storage: ^11.6.11
   # 상태관리 라이브러리
-  provider: ^6.1.1
+  provider: ^6.1.2
   # 이미지 관련 라이브러리
   image_picker: ^1.0.7
   flutter_svg: ^2.0.9
@@ -32,19 +32,19 @@ dependencies:
   # 네이버 로그인
   flutter_naver_login: ^1.8.0
   # 애플 로그인
-  sign_in_with_apple: ^5.0.0
+  sign_in_with_apple: ^6.0.0
   # 구글 로그인
   google_sign_in: ^6.2.1
-  # 안내메시지
+  # 안내
   another_flushbar: ^1.12.30
+  # http
+  http: ^1.2.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-  flutter_lints: ^2.0.0
-
-  build_runner: ^2.4.8
+  flutter_lints: ^3.0.2
+  build_runner: ^2.4.7
   json_serializable: ^6.7.1
 
 flutter:

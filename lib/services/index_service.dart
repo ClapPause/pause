@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:pause/services/firebase_service.dart';
 
 class IndexService {
@@ -15,6 +17,7 @@ class IndexService {
       });
       return index;
     } catch (e) {
+      log('IndexService/getId error : $e');
       return null;
     }
   }

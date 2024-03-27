@@ -1,6 +1,4 @@
 import 'dart:developer';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pause/constants/constants_reg.dart';
 import 'package:pause/screens/sign/reset_password_screen.dart';

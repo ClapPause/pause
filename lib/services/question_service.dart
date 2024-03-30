@@ -9,13 +9,13 @@ import 'data_service.dart';
 class QuestionService {
   static const String _collection = 'question';
 
-  Future<bool> makeQuestion({
+  static Future<bool> makeQuestion({
     required String uid,
-    required int number,
   }) async {
     try {
       String? id = await DataService.getId(name: _collection);
-      String? question = await getQuestionByNumber(uid: uid, number: number);
+      int number = (await getQuestionByUid(uid:uid)).length+1;
+      String? question = await _getQuestionByNumber(uid: uid, number: number);
       if (id == null || question == null) return false;
 
       DateTime nowDate = DateTime.now();
@@ -41,7 +41,7 @@ class QuestionService {
     }
   }
 
-  Future<void> answerQuestion({
+  static Future<void> answerQuestion({
     required String questionId,
     required String answer,
   }) async {
@@ -61,7 +61,7 @@ class QuestionService {
     }
   }
 
-  Future<List<Question>> getQuestionByUid({required String uid}) async {
+  static Future<List<Question>> getQuestionByUid({required String uid}) async {
     try {
       final snapshot = await FirebaseService.fireStore
           .collection(_collection)
@@ -77,7 +77,7 @@ class QuestionService {
     }
   }
 
-  Future<Question?> getLastQuestionByUid({required String uid}) async {
+  static Future<Question?> getLastQuestionByUid({required String uid}) async {
     try {
       final snapshot = await FirebaseService.fireStore
           .collection(_collection)
@@ -92,7 +92,7 @@ class QuestionService {
     }
   }
 
-  Future<String?> getQuestionByNumber(
+  static  Future<String?> _getQuestionByNumber(
       {required String uid, required int number}) async {
     try {
       String userName = await UserService.get(uid, 'name');

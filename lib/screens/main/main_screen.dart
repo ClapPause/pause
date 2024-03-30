@@ -1,9 +1,13 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pause/controllers/user_controller.dart';
+import 'package:pause/models/question/question.dart';
 import 'package:pause/screens/sign/login_screen.dart';
+import 'package:pause/services/question_service.dart';
 import 'package:provider/provider.dart';
 import '../../constants/constants_color.dart';
+import '../../utils/question_utils.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -17,6 +21,7 @@ class _MainScreenState extends State<MainScreen>
   late AnimationController _animationController;
   late Animation<double> _rotateAnimation;
   bool _showBottomBar = false;
+  bool _showQuestion = false;
 
   @override
   void initState() {
@@ -83,34 +88,174 @@ class _MainScreenState extends State<MainScreen>
                 ),
                 Stack(
                   children: [
-                    // 명언 부분
-                    Positioned(
-                      left: 0,
-                      right: 0,
-                      top: 80,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            '"천천히 가도 괜찮아\n나를 잃지만 않으면 돼."',
-                            style: TextStyle(
-                              fontSize: 24,
-                              height: 40 / 24,
-                              fontStyle: FontStyle.italic,
-                              color: kBlack400,
+                    // 질문 부분
+                    if (_showQuestion)
+                      Positioned(
+                        left: 0,
+                        right: 0,
+                        top: 80,
+                        child: GestureDetector(
+                          behavior: HitTestBehavior.opaque,
+                          onTap: () => setState(() => _showQuestion = false),
+                          child: Container(
+                            alignment: Alignment.center,
+                            margin: const EdgeInsets.symmetric(horizontal: 36),
+                            width: double.infinity,
+                            height: 130,
+                            decoration: BoxDecoration(
+                              color: kWhiteColor,
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(
+                                color: const Color(0xFF999999).withOpacity(0.6),
+                              ),
+                              boxShadow: [
+                                BoxShadow(
+                                  offset: const Offset(0, 2),
+                                  blurRadius: 2,
+                                  color: kBlackColor.withOpacity(0.25),
+                                ),
+                              ],
+                            ),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                const SizedBox(height: 16),
+                                Text(
+                                  '오늘의 질문이 왔어요!!',
+                                  style: TextStyle(
+                                    color: kBlackColor,
+                                    height: 16 / 14,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                const SizedBox(height: 22),
+                                Container(
+                                  alignment: Alignment.center,
+                                  width: 130,
+                                  height: 30,
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xFFFFA5A5),
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                  child: Text(
+                                    '답변하러 가기',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      height: 16 / 14,
+                                      color: kWhiteColor,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                          Text(
-                            'from. 곰돌이 푸',
-                            style: TextStyle(
-                              fontSize: 12,
-                              height: 40 / 12,
-                              color: kBlack400,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                        ),
+                      )
+                    else
+                      Positioned(
+                          left: 0,
+                          right: 0,
+                          top: 80,
+                          child: FutureBuilder(
+                            future: QuestionService.getLastQuestionByUid(
+                                uid: controller.user!.id),
+                            builder: (context, snapshot) {
+                              Question? lastQuestion = snapshot.data;
+                              if (lastQuestion != null &&
+                                  !isDifferentDate(
+                                      lastQuestion.openTimeStamp) && !lastQuestion.answered) {
+                                // 질문 기록하기 화면으로 가기
+                                // 이전에 질문 답변 안하고 재접속한 경우를 생각하면 될듯
+                                // 질문 보여주기
+                                return GestureDetector(
+                                  behavior: HitTestBehavior.opaque,
+                                  onTap: (){
+                                    // 여기서 dialog를 보여주거나 혹은
+                                    // Stack과 같이 그냥 위에 하나를 새로 보여주거나
+                                  },
+                                  child: Container(
+                                    alignment: Alignment.center,
+                                    margin: const EdgeInsets.symmetric(horizontal: 36),
+                                    width: double.infinity,
+                                    height: 160,
+                                    decoration: BoxDecoration(
+                                      color: kWhiteColor,
+                                      borderRadius: BorderRadius.circular(25),
+                                      border: Border.all(
+                                        color: const Color(0xFFCC8484),
+                                      ),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          offset: const Offset(0, 5),
+                                          blurRadius: 5,
+                                          color: kBlackColor.withOpacity(0.25),
+                                        ),
+                                      ],
+                                    ),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        const SizedBox(height: 16),
+                                        Text(
+                                          lastQuestion.question,
+                                          style: TextStyle(
+                                            color: kBlackColor,
+                                            height: 24 / 16,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        const SizedBox(height: 22),
+                                        Container(
+                                          alignment: Alignment.center,
+                                          width: 100,
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: const Color(0xFFFFA5A5),
+                                            borderRadius: BorderRadius.circular(15),
+                                          ),
+                                          child: Text(
+                                            '기록하기',
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                              height: 16 / 14,
+                                              color: kWhiteColor,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              }
+                              // TODO 여기서 명언 보여주기
+                              return Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                    '"천천히 가도 괜찮아\n나를 잃지만 않으면 돼."',
+                                    style: TextStyle(
+                                      fontSize: 24,
+                                      height: 40 / 24,
+                                      fontStyle: FontStyle.italic,
+                                      color: kBlack400,
+                                    ),
+                                  ),
+                                  Text(
+                                    'from. 곰돌이 푸',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      height: 40 / 12,
+                                      color: kBlack400,
+                                    ),
+                                  ),
+                                ],
+                              );
+                            },
+                          )),
                     // 메모
                     Positioned(
                       left: 58,
@@ -130,6 +275,56 @@ class _MainScreenState extends State<MainScreen>
                         height: 45,
                         child: Image.asset('assets/image/main_note_2.png'),
                       ),
+                    ),
+                    // 메일
+
+                    FutureBuilder(
+                      future: QuestionService.getLastQuestionByUid(
+                          uid: controller.user!.id),
+                      builder: (context, snapshot) {
+                        Question? lastQuestion = snapshot.data;
+                        if (!_showQuestion &&
+                            (lastQuestion == null ||
+                                isDifferentDate(lastQuestion.openTimeStamp))) {
+                          return Positioned(
+                            left: 0,
+                            right: 0,
+                            top: 300,
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                GestureDetector(
+                                  behavior: HitTestBehavior.opaque,
+                                  onTap: () async {
+                                    if (_showQuestion) return;
+                                    _showQuestion = true;
+                                    await QuestionService.makeQuestion(
+                                        uid: controller.user!.id);
+                                    setState(() {});
+                                  },
+                                  child: SizedBox(
+                                    width: 54,
+                                    height: 34,
+                                    child: Image.asset(
+                                        'assets/image/main_mail.png'),
+                                  ),
+                                ),
+                                const SizedBox(height: 4),
+                                const Text(
+                                  '질문이 도착했어요!',
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    height: 12 / 10,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFFEF626B),
+                                  ),
+                                )
+                              ],
+                            ),
+                          );
+                        }
+                        return Container();
+                      },
                     ),
                     // 퍼지
                     Positioned(

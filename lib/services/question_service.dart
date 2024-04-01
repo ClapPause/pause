@@ -66,6 +66,7 @@ class QuestionService {
       final snapshot = await FirebaseService.fireStore
           .collection(_collection)
           .where('uid', isEqualTo: uid)
+          .orderBy('openTimeStamp',descending: true)
           .get();
       if (snapshot.docs.isEmpty) return [];
       return snapshot.docs

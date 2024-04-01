@@ -12,7 +12,7 @@ import 'package:provider/provider.dart';
 import '../../constants/constants_color.dart';
 import '../../utils/question_utils.dart';
 import 'components/bottom_bar.dart';
-import 'components/question_sheet.dart';
+import '../../widgets/question_sheet.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -232,11 +232,18 @@ class _MainScreenState extends State<MainScreen>
                   ],
                 ),
                 if (_showQuestionSheet)
-                  QuestionSheet(
-                    onTap: () => setState(
-                        () => _showQuestionSheet = !_showQuestionSheet),
-                    uid: controller.user!.id,
-                  ),
+                  FutureBuilder(
+                      future: QuestionService.getLastQuestionByUid(
+                          uid: controller.user!.id),
+                      builder: (context, snapshot) {
+                        Question? question = snapshot.data;
+                        if (question == null) return Container();
+                        return QuestionSheet(
+                          onTap: () => setState(
+                              () => _showQuestionSheet = !_showQuestionSheet),
+                          question: question,
+                        );
+                      }),
                 if (_showBottomBar)
                   BottomBar(onTap: () {
                     if (_animationController.isCompleted) {

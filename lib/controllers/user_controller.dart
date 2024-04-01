@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:pause/services/local_service.dart';
 
 import '../models/user/user.dart';
 
@@ -10,6 +11,7 @@ class UserController extends ChangeNotifier {
   void signIn(User newUser) {
     try {
       user = newUser;
+      LocalService.saveUserData(newUser);
       notifyListeners();
       log('${user?.id}유저 로그인');
     } catch (e) {

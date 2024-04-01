@@ -6,6 +6,7 @@ import 'package:pause/controllers/user_controller.dart';
 import 'package:pause/screens/main/main_screen.dart';
 import 'package:pause/screens/sign/find_password_screen.dart';
 import 'package:pause/screens/sign/sign_up_screen.dart';
+import 'package:pause/services/local_service.dart';
 import 'package:pause/services/sign_service.dart';
 import 'package:pause/utils/local_utils.dart';
 import 'package:pause/widgets/custom_action_button.dart';
@@ -17,7 +18,7 @@ import '../../utils/sign_in_utils.dart';
 import '../../widgets/custom_social_sign_in_button.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({super.key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -28,6 +29,29 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _passwordController = TextEditingController();
 
   bool _showPassword = false;
+
+  @override
+  void initState() {
+    super.initState();
+    autoLogin();
+  }
+
+  void autoLogin() async {
+    User? user = await LocalService.getUserInfo();
+    if (user == null) return;
+    user = await SignService.localSignIn(user.email, user.password);
+    if (user == null) return;
+    if (!mounted) return;
+    LocalService.saveUserData(user);
+    context.read<UserController>().signIn(user);
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const MainScreen(),
+      ),
+      (route) => false,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -112,6 +136,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   return;
                 }
                 context.read<UserController>().signIn(user);
+                LocalService.saveUserData(user);
                 Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
@@ -120,7 +145,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   (route) => false,
                 );
               },
-              // onTap: () => loginWithEmailAndPassword(),
               text: '로그인 하기',
             ),
             const SizedBox(height: 27),

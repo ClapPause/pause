@@ -10,6 +10,7 @@ import 'package:pause/controllers/user_controller.dart';
 import 'package:pause/models/user/user.dart' as model_user;
 import 'package:pause/screens/main/main_screen.dart';
 import 'package:pause/screens/sign/sign_up_name_screen.dart';
+import 'package:pause/services/local_service.dart';
 import 'package:pause/services/sign_service.dart';
 import 'package:provider/provider.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
@@ -100,6 +101,7 @@ void socialSignIn(BuildContext context, String email) async {
   model_user.User?  user = await SignService.socialSignIn(email);
   if(user==null || !context.mounted) return;
   context.read<UserController>().signIn(user);
+  LocalService.saveUserData(user);
   Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(builder: (context) => const MainScreen()),

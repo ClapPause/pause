@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:pause/screens/history/history_screen.dart';
 
 import '../../../constants/constants_color.dart';
 
 class BottomBar extends StatelessWidget {
   final void Function() onTap;
+
   const BottomBar({super.key, required this.onTap});
 
   @override
@@ -29,7 +31,12 @@ class BottomBar extends StatelessWidget {
                 const SizedBox(width: 20),
                 kBottomIcon(
                   icon: 'assets/icon/main_history.svg',
-                  onTap: () {},
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const HistoryScreen(),
+                    ),
+                  ),
                 ),
                 const SizedBox(width: 20),
                 kBottomIcon(
@@ -55,7 +62,7 @@ class BottomBar extends StatelessWidget {
         width: 50,
         height: 50,
         decoration:
-        BoxDecoration(borderRadius: BorderRadius.circular(50), boxShadow: [
+            BoxDecoration(borderRadius: BorderRadius.circular(50), boxShadow: [
           BoxShadow(
             offset: const Offset(0, -2),
             color: kBlackColor.withOpacity(0.25),

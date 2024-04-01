@@ -56,244 +56,241 @@ class _MainScreenState extends State<MainScreen>
           (route) => false,
         );
       }
-      return Stack(
-        children: [
-          Scaffold(
-            resizeToAvoidBottomInset: false,
-            backgroundColor: kWhiteColor,
-            appBar: AppBar(
-              leading: Container(
-                width: 40,
-              ),
-              leadingWidth: 40,
-              backgroundColor: kWhiteColor,
-              foregroundColor: kPrimaryColor,
-              centerTitle: true,
-              title: Image.asset('assets/logo/pause_logo.png'),
-              actions: [
-                SizedBox(
-                  width: 30,
-                  height: 30,
-                  child: Image.asset('assets/image/main_mypage.png'),
-                ),
-                const SizedBox(width: 10),
-              ],
+      return Scaffold(
+        resizeToAvoidBottomInset: false,
+        backgroundColor: kWhiteColor,
+        appBar: AppBar(
+          leading: Container(
+            width: 40,
+          ),
+          leadingWidth: 40,
+          surfaceTintColor: kWhiteColor,
+          backgroundColor: kWhiteColor,
+          foregroundColor: kPrimaryColor,
+          centerTitle: true,
+          title: Image.asset('assets/logo/pause_logo.png'),
+          actions: [
+            SizedBox(
+              width: 30,
+              height: 30,
+              child: Image.asset('assets/image/main_mypage.png'),
             ),
-            body: Stack(
-              children: [
-                Container(
-                  width: double.infinity,
-                  height: MediaQuery.of(context).size.height,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage(
-                        'assets/image/paper_texture.png',
-                      ),
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                ),
-                Stack(
-                  children: [
-                    // 질문 부분
-                    if (_showQuestion)
-                      GoAnswerContainer(
-                        onTap: () => setState(() {
-                          _showQuestion = false;
-                          _showQuestionSheet = true;
-                        }),
-                      )
-                    else
-                      Positioned(
-                          left: 0,
-                          right: 0,
-                          top: 80,
-                          child: FutureBuilder(
-                            future: QuestionService.getLastQuestionByUid(
-                                uid: controller.user!.id),
-                            builder: (context, snapshot) {
-                              Question? lastQuestion = snapshot.data;
-                              if (lastQuestion != null &&
-                                  !isDifferentDate(
-                                      lastQuestion.openTimeStamp) &&
-                                  !lastQuestion.answered) {
-                                // 질문 기록하기 화면으로 가기
-                                // 이전에 질문 답변 안하고 재접속한 경우를 생각하면 될듯
-                                // 질문 보여주기
-                                return QuestionContainer(
-                                  onTap: () => setState(
-                                    () => _showQuestionSheet = true,
-                                  ),
-                                  question: lastQuestion,
-                                );
-                              }
-                              return const QuotesContainer();
-                            },
-                          )),
-                    // 메모
-                    Positioned(
-                      left: 58,
-                      top: 300,
-                      child: SizedBox(
-                        width: 37,
-                        height: 46,
-                        child: Image.asset('assets/image/main_note_1.png'),
-                      ),
-                    ),
-                    // 달력
-                    Positioned(
-                      left: 100,
-                      top: 270,
-                      child: SizedBox(
-                        width: 42,
-                        height: 45,
-                        child: Image.asset('assets/image/main_note_2.png'),
-                      ),
-                    ),
-                    // 메일
-                    FutureBuilder(
-                      future: QuestionService.getLastQuestionByUid(
-                          uid: controller.user!.id),
-                      builder: (context, snapshot) {
-                        Question? lastQuestion = snapshot.data;
-                        if (!_showQuestion &&
-                            (lastQuestion == null ||
-                                isDifferentDate(lastQuestion.openTimeStamp))) {
-                          return Positioned(
-                            left: 0,
-                            right: 0,
-                            top: 300,
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                GestureDetector(
-                                  behavior: HitTestBehavior.opaque,
-                                  onTap: () async {
-                                    if (_showQuestion) return;
-                                    _showQuestion = true;
-                                    await QuestionService.makeQuestion(
-                                        uid: controller.user!.id);
-                                    setState(() {});
-                                  },
-                                  child: SizedBox(
-                                    width: 54,
-                                    height: 34,
-                                    child: Image.asset(
-                                        'assets/image/main_mail.png'),
-                                  ),
-                                ),
-                                const SizedBox(height: 4),
-                                const Text(
-                                  '질문이 도착했어요!',
-                                  style: TextStyle(
-                                    fontSize: 10,
-                                    height: 12 / 10,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xFFEF626B),
-                                  ),
-                                )
-                              ],
-                            ),
-                          );
-                        }
-                        return Container();
-                      },
-                    ),
-                    // 퍼지
-                    Positioned(
-                      left: 55,
-                      top: 360,
-                      child: SizedBox(
-                        width: 163,
-                        height: 211,
-                        child: Image.asset('assets/image/main_pausy.png'),
-                      ),
-                    ),
-                    // 책장
-                    Positioned(
-                      right: 0,
-                      top: 334,
-                      child: SizedBox(
-                        width: 121,
-                        height: 181,
-                        child: Image.asset('assets/image/main_bookcase.png'),
-                      ),
-                    ),
-                    // 바람이
-                    Positioned(
-                      right: 55,
-                      top: 480,
-                      child: SizedBox(
-                        width: 102,
-                        height: 92,
-                        child: Image.asset('assets/image/main_barame.png'),
-                      ),
-                    ),
-                  ],
-                ),
-                if (_showQuestionSheet)
-                  FutureBuilder(
-                      future: QuestionService.getLastQuestionByUid(
-                          uid: controller.user!.id),
-                      builder: (context, snapshot) {
-                        Question? question = snapshot.data;
-                        if (question == null) return Container();
-                        return QuestionSheet(
-                          onTap: () => setState(
-                              () => _showQuestionSheet = !_showQuestionSheet),
-                          question: question,
-                        );
-                      }),
-                if (_showBottomBar)
-                  BottomBar(onTap: () {
-                    if (_animationController.isCompleted) {
-                      _animationController.reverse();
-                    }
-                    setState(() => _showBottomBar = !_showBottomBar);
-                  }),
-              ],
-            ),
-            floatingActionButtonLocation:
-                FloatingActionButtonLocation.centerDocked,
-            floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
-            floatingActionButton: GestureDetector(
-              onTap: () {
-                if (_animationController.isCompleted) {
-                  _animationController.reverse();
-                } else {
-                  _animationController.forward();
-                }
-                setState(() => _showBottomBar = !_showBottomBar);
-              },
-              child: RotationTransition(
-                turns: _rotateAnimation,
-                child: SizedBox(
-                  width: 60,
-                  height: 60,
-                  child: SvgPicture.asset('assets/icon/main_add.svg'),
-                ),
-              ),
-            ),
-            bottomNavigationBar: Container(
-              height: const BottomAppBar().height,
+            const SizedBox(width: 10),
+          ],
+        ),
+        body: Stack(
+          children: [
+            Container(
+              width: double.infinity,
+              height: MediaQuery.of(context).size.height,
               decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(
                     'assets/image/paper_texture.png',
                   ),
-                  fit: BoxFit.cover,
+                  fit: BoxFit.fill,
                 ),
               ),
-              child: BottomAppBar(
-                height: 20,
-                shape: const CircularNotchedRectangle(),
-                notchMargin: 8,
-                color: kPrimaryBackgroundColor,
-                surfaceTintColor: kWhiteColor,
-              ),
+            ),
+            Stack(
+              children: [
+                // 질문 부분
+                if (_showQuestion)
+                  GoAnswerContainer(
+                    onTap: () => setState(() {
+                      _showQuestion = false;
+                      _showQuestionSheet = true;
+                    }),
+                  )
+                else
+                  Positioned(
+                      left: 0,
+                      right: 0,
+                      top: 80,
+                      child: FutureBuilder(
+                        future: QuestionService.getLastQuestionByUid(
+                            uid: controller.user!.id),
+                        builder: (context, snapshot) {
+                          Question? lastQuestion = snapshot.data;
+                          if (lastQuestion != null &&
+                              !isDifferentDate(
+                                  lastQuestion.openTimeStamp) &&
+                              !lastQuestion.answered) {
+                            // 질문 기록하기 화면으로 가기
+                            // 이전에 질문 답변 안하고 재접속한 경우를 생각하면 될듯
+                            // 질문 보여주기
+                            return QuestionContainer(
+                              onTap: () => setState(
+                                    () => _showQuestionSheet = true,
+                              ),
+                              question: lastQuestion,
+                            );
+                          }
+                          return const QuotesContainer();
+                        },
+                      )),
+                // 메모
+                Positioned(
+                  left: 58,
+                  top: 300,
+                  child: SizedBox(
+                    width: 37,
+                    height: 46,
+                    child: Image.asset('assets/image/main_note_1.png'),
+                  ),
+                ),
+                // 달력
+                Positioned(
+                  left: 100,
+                  top: 270,
+                  child: SizedBox(
+                    width: 42,
+                    height: 45,
+                    child: Image.asset('assets/image/main_note_2.png'),
+                  ),
+                ),
+                // 메일
+                FutureBuilder(
+                  future: QuestionService.getLastQuestionByUid(
+                      uid: controller.user!.id),
+                  builder: (context, snapshot) {
+                    Question? lastQuestion = snapshot.data;
+                    if (!_showQuestion &&
+                        (lastQuestion == null ||
+                            isDifferentDate(lastQuestion.openTimeStamp))) {
+                      return Positioned(
+                        left: 0,
+                        right: 0,
+                        top: 300,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            GestureDetector(
+                              behavior: HitTestBehavior.opaque,
+                              onTap: () async {
+                                if (_showQuestion) return;
+                                _showQuestion = true;
+                                await QuestionService.makeQuestion(
+                                    uid: controller.user!.id);
+                                setState(() {});
+                              },
+                              child: SizedBox(
+                                width: 54,
+                                height: 34,
+                                child: Image.asset(
+                                    'assets/image/main_mail.png'),
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            const Text(
+                              '질문이 도착했어요!',
+                              style: TextStyle(
+                                fontSize: 10,
+                                height: 12 / 10,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFFEF626B),
+                              ),
+                            )
+                          ],
+                        ),
+                      );
+                    }
+                    return Container();
+                  },
+                ),
+                // 퍼지
+                Positioned(
+                  left: 55,
+                  top: 360,
+                  child: SizedBox(
+                    width: 163,
+                    height: 211,
+                    child: Image.asset('assets/image/main_pausy.png'),
+                  ),
+                ),
+                // 책장
+                Positioned(
+                  right: 0,
+                  top: 334,
+                  child: SizedBox(
+                    width: 121,
+                    height: 181,
+                    child: Image.asset('assets/image/main_bookcase.png'),
+                  ),
+                ),
+                // 바람이
+                Positioned(
+                  right: 55,
+                  top: 480,
+                  child: SizedBox(
+                    width: 102,
+                    height: 92,
+                    child: Image.asset('assets/image/main_barame.png'),
+                  ),
+                ),
+              ],
+            ),
+            if (_showQuestionSheet)
+              FutureBuilder(
+                  future: QuestionService.getLastQuestionByUid(
+                      uid: controller.user!.id),
+                  builder: (context, snapshot) {
+                    Question? question = snapshot.data;
+                    if (question == null) return Container();
+                    return QuestionSheet(
+                      onTap: () => setState(
+                              () => _showQuestionSheet = !_showQuestionSheet),
+                      question: question,
+                    );
+                  }),
+            if (_showBottomBar)
+              BottomBar(onTap: () {
+                if (_animationController.isCompleted) {
+                  _animationController.reverse();
+                }
+                setState(() => _showBottomBar = !_showBottomBar);
+              }),
+          ],
+        ),
+        floatingActionButtonLocation:
+        FloatingActionButtonLocation.centerDocked,
+        floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
+        floatingActionButton: GestureDetector(
+          onTap: () {
+            if (_animationController.isCompleted) {
+              _animationController.reverse();
+            } else {
+              _animationController.forward();
+            }
+            setState(() => _showBottomBar = !_showBottomBar);
+          },
+          child: RotationTransition(
+            turns: _rotateAnimation,
+            child: SizedBox(
+              width: 60,
+              height: 60,
+              child: SvgPicture.asset('assets/icon/main_add.svg'),
             ),
           ),
-        ],
+        ),
+        bottomNavigationBar: Container(
+          height: const BottomAppBar().height,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(
+                'assets/image/paper_texture.png',
+              ),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: BottomAppBar(
+            height: 20,
+            shape: const CircularNotchedRectangle(),
+            notchMargin: 8,
+            color: kPrimaryBackgroundColor,
+            surfaceTintColor: kWhiteColor,
+          ),
+        ),
       );
     });
   }

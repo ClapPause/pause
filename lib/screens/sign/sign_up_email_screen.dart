@@ -10,7 +10,7 @@ import 'package:pause/widgets/custom_action_button.dart';
 import '../../widgets/custom_text_field.dart';
 
 class SignUpEmailScreen extends StatefulWidget {
-  const SignUpEmailScreen({Key? key}) : super(key: key);
+  const SignUpEmailScreen({super.key});
 
   @override
   State<SignUpEmailScreen> createState() => _SignUpEmailScreenState();

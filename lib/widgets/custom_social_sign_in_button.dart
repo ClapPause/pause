@@ -5,10 +5,10 @@ class CustomSocialSignInButton extends StatelessWidget {
   final String image;
 
   const CustomSocialSignInButton({
-    Key? key,
+    super.key,
     required this.onTap,
     required this.image,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

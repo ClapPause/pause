@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pause/controllers/user_controller.dart';
 import 'package:pause/models/question/question.dart';
@@ -10,7 +8,6 @@ import 'package:pause/utils/question_utils.dart';
 import 'package:provider/provider.dart';
 
 import '../../constants/constants_color.dart';
-import '../../utils/date_utils.dart';
 import '../../widgets/question_sheet.dart';
 import '../sign/login_screen.dart';
 import 'components/question_card.dart';
@@ -24,7 +21,7 @@ class HistoryScreen extends StatefulWidget {
 
 class _HistoryScreenState extends State<HistoryScreen> {
   bool _showQuestionSheet = false;
-  Question? _selectedQuestion = null;
+  Question? _selectedQuestion;
 
   @override
   Widget build(BuildContext context) {

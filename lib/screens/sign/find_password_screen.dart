@@ -11,7 +11,7 @@ import '../../constants/constants_color.dart';
 import '../../utils/sign_in_utils.dart';
 
 class FindPasswordScreen extends StatefulWidget {
-  const FindPasswordScreen({Key? key}) : super(key: key);
+  const FindPasswordScreen({super.key});
 
   @override
   State<FindPasswordScreen> createState() => _FindPasswordScreenState();

@@ -8,7 +8,7 @@ import '../../widgets/custom_outlined_action_button.dart';
 import '../../widgets/custom_social_sign_in_button.dart';
 
 class SignUpScreen extends StatelessWidget {
-  const SignUpScreen({Key? key}) : super(key: key);
+  const SignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

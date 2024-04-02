@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pause/constants/constants_color.dart';
 import 'package:pause/models/user/user.dart';
@@ -8,7 +7,7 @@ import 'package:pause/widgets/custom_action_button.dart';
 class WelcomeScreen extends StatelessWidget {
   final User user;
 
-  const WelcomeScreen({Key? key, required this.user}) : super(key: key);
+  const WelcomeScreen({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {

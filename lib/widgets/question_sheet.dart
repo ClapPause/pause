@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../constants/constants_color.dart';
 import '../models/question/question.dart';

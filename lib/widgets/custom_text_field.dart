@@ -9,14 +9,14 @@ class CustomTextField extends StatefulWidget {
   final bool showObscureText;
 
   const CustomTextField({
-    Key? key,
+    super.key,
     required this.controller,
     required this.hintText,
     this.maxLength,
     this.inputType,
     this.showObscureText = false,
     required void Function() showClicked,
-  }) : super(key: key);
+  });
 
 
   @override

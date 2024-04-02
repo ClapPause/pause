@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pause/models/question/question.dart';
 
@@ -37,13 +38,19 @@ class QuestionContainer extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             const SizedBox(height: 16),
-            Text(
-              question.question,
-              style: TextStyle(
-                color: kBlackColor,
-                height: 24 / 16,
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Text(
+                question.question,
+                style: TextStyle(
+                  color: kBlackColor,
+                  height: 24 / 16,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+                maxLines: 2,
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
               ),
             ),
             const SizedBox(height: 22),

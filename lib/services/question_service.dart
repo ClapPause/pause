@@ -1,9 +1,8 @@
 import 'dart:developer';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:pause/models/question/question.dart';
 import 'package:pause/services/firebase_service.dart';
-import 'package:pause/services/user_service.dart';
-
+import '../constants/constants_list.dart';
 import 'data_service.dart';
 
 class QuestionService {
@@ -14,9 +13,9 @@ class QuestionService {
   }) async {
     try {
       String? id = await DataService.getId(name: _collection);
-      int number = (await getQuestionByUid(uid:uid)).length+1;
-      String? question = await _getQuestionByNumber(uid: uid, number: number);
-      if (id == null || question == null) return false;
+      int number = (await getQuestionByUid(uid: uid)).length + 1;
+      String question = _getQuestionByNumber(uid: uid, number: number);
+      if (id == null) return false;
 
       DateTime nowDate = DateTime.now();
       DateTime openDate = DateTime(nowDate.year, nowDate.month, nowDate.day);
@@ -66,7 +65,7 @@ class QuestionService {
       final snapshot = await FirebaseService.fireStore
           .collection(_collection)
           .where('uid', isEqualTo: uid)
-          .orderBy('openTimeStamp',descending: true)
+          .orderBy('openTimeStamp', descending: true)
           .get();
       if (snapshot.docs.isEmpty) return [];
       return snapshot.docs
@@ -75,6 +74,20 @@ class QuestionService {
     } catch (e) {
       log('QuestionService/getQuestionByUid error : $e');
       return [];
+    }
+  }
+
+  static Stream<QuerySnapshot<Map<String, dynamic>>> getStreamQuestionByUid(
+      {required String uid}) {
+    try {
+      return FirebaseService.fireStore
+          .collection(_collection)
+          .where('uid', isEqualTo: uid)
+          .orderBy('openTimeStamp', descending: true)
+          .snapshots();
+    } catch (e) {
+      log('QuestionService/getStreamQuestionByUid error : $e');
+      return const Stream.empty();
     }
   }
 
@@ -93,14 +106,8 @@ class QuestionService {
     }
   }
 
-  static  Future<String?> _getQuestionByNumber(
-      {required String uid, required int number}) async {
-    try {
-      String userName = await UserService.get(uid, 'name');
-      return "$userName 님의 이름은 무엇이고,\n누가, 어떤 의미로 지어주었나요?$number";
-    } catch (e) {
-      log('QuestionService/getQuestionByNumber error : $e');
-      return null;
-    }
+  static String _getQuestionByNumber(
+      {required String uid, required int number}) {
+    return kQuestionList[(number % kQuestionList.length) - 1];
   }
 }

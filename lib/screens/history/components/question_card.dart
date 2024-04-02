@@ -46,6 +46,8 @@ class QuestionCard extends StatelessWidget {
                   color: kBlack400,
                   fontWeight: FontWeight.w600,
                 ),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.center,
               ),
             ),

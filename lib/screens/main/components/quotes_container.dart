@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pause/constants/constants_list.dart';
 
 import '../../../constants/constants_color.dart';
 
@@ -7,27 +8,21 @@ class QuotesContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(
-          '"천천히 가도 괜찮아\n나를 잃지만 않으면 돼."',
-          style: TextStyle(
-            fontSize: 24,
-            height: 40 / 24,
-            fontStyle: FontStyle.italic,
-            color: kBlack400,
-          ),
+    DateTime nowDate = DateTime.now();
+    int number = (nowDate.difference(DateTime(nowDate.year)).inDays %
+            kQuotesList.length) -
+        1;
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Text(
+        kQuotesList[number],
+        style: TextStyle(
+          fontSize: 16,
+          height: 20 / 16,
+          fontStyle: FontStyle.italic,
+          color: kBlack400,
         ),
-        Text(
-          'from. 곰돌이 푸',
-          style: TextStyle(
-            fontSize: 12,
-            height: 40 / 12,
-            color: kBlack400,
-          ),
-        ),
-      ],
+      ),
     );
   }
 }

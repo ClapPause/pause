@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pause/controllers/user_controller.dart';
@@ -71,12 +72,15 @@ class _HistoryScreenState extends State<HistoryScreen> {
                 ),
               ),
             ),
-            FutureBuilder(
-                future:
-                    QuestionService.getQuestionByUid(uid: controller.user!.id),
+            StreamBuilder(
+                stream: QuestionService.getStreamQuestionByUid(
+                    uid: controller.user!.id),
                 builder: (context, snapshot) {
-                  List<Question>? questionList = snapshot.data;
-                  if (questionList == null) return Container();
+                  QuerySnapshot<Map<String, dynamic>>? stream = snapshot.data;
+                  if (stream == null) return Container();
+                  List<Question> questionList = stream.docs.map((document) {
+                    return Question.fromJson(document.data());
+                  }).toList();
                   return ListView(
                     padding: const EdgeInsets.symmetric(vertical: 30),
                     shrinkWrap: true,

@@ -7,6 +7,7 @@ import 'package:pause/screens/main/components/question_container.dart';
 import 'package:pause/screens/main/components/quotes_container.dart';
 import 'package:pause/screens/sign/login_screen.dart';
 import 'package:pause/services/question_service.dart';
+import 'package:pause/widgets/pause_app_bar.dart';
 import 'package:provider/provider.dart';
 import '../../constants/constants_color.dart';
 import '../../utils/question_utils.dart';
@@ -58,25 +59,7 @@ class _MainScreenState extends State<MainScreen>
       return Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: kWhiteColor,
-        appBar: AppBar(
-          leading: Container(
-            width: 40,
-          ),
-          leadingWidth: 40,
-          surfaceTintColor: kWhiteColor,
-          backgroundColor: kWhiteColor,
-          foregroundColor: kPrimaryColor,
-          centerTitle: true,
-          title: Image.asset('assets/logo/pause_logo.png'),
-          actions: [
-            SizedBox(
-              width: 30,
-              height: 30,
-              child: Image.asset('assets/image/main_mypage.png'),
-            ),
-            const SizedBox(width: 10),
-          ],
-        ),
+        appBar: const PauseAppBar(),
         body: Stack(
           children: [
             Container(
@@ -97,7 +80,6 @@ class _MainScreenState extends State<MainScreen>
                 if (_showQuestion)
                   GoAnswerContainer(
                     onTap: () => setState(() {
-                      _showQuestion = false;
                       _showQuestionSheet = true;
                     }),
                   )
@@ -268,7 +250,7 @@ class _MainScreenState extends State<MainScreen>
             child: SizedBox(
               width: 60,
               height: 60,
-              child: SvgPicture.asset('assets/icon/main_add.svg'),
+              child: Image.asset('assets/image/main_add.png'),
             ),
           ),
         ),

@@ -25,12 +25,12 @@ class BottomBar extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 kBottomIcon(
-                  icon: 'assets/icon/main_career.svg',
+                  icon: 'assets/image/main_career.png',
                   onTap: () {},
                 ),
                 const SizedBox(width: 20),
                 kBottomIcon(
-                  icon: 'assets/icon/main_history.svg',
+                  icon: 'assets/image/main_history.png',
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -40,7 +40,7 @@ class BottomBar extends StatelessWidget {
                 ),
                 const SizedBox(width: 20),
                 kBottomIcon(
-                  icon: 'assets/icon/main_test.svg',
+                  icon: 'assets/image/main_test.png',
                   onTap: () {},
                 ),
               ],
@@ -61,15 +61,10 @@ class BottomBar extends StatelessWidget {
       child: Container(
         width: 50,
         height: 50,
-        decoration:
-            BoxDecoration(borderRadius: BorderRadius.circular(50), boxShadow: [
-          BoxShadow(
-            offset: const Offset(0, -2),
-            color: kBlackColor.withOpacity(0.25),
-            blurRadius: 2,
-          )
-        ]),
-        child: SvgPicture.asset(icon),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(50),
+        ),
+        child: Image.asset(icon),
       ),
     );
   }

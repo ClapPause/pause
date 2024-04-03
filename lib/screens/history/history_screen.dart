@@ -9,6 +9,7 @@ import 'package:pause/utils/question_utils.dart';
 import 'package:provider/provider.dart';
 
 import '../../constants/constants_color.dart';
+import '../../widgets/pause_app_bar.dart';
 import '../../widgets/question_sheet.dart';
 import '../sign/login_screen.dart';
 import 'components/question_card.dart';
@@ -39,25 +40,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
       return Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: kWhiteColor,
-        appBar: AppBar(
-          leading: Container(
-            width: 40,
-          ),
-          leadingWidth: 40,
-          surfaceTintColor: kWhiteColor,
-          backgroundColor: kWhiteColor,
-          foregroundColor: kPrimaryColor,
-          centerTitle: true,
-          title: Image.asset('assets/logo/pause_logo.png'),
-          actions: [
-            SizedBox(
-              width: 30,
-              height: 30,
-              child: Image.asset('assets/image/main_mypage.png'),
-            ),
-            const SizedBox(width: 10),
-          ],
-        ),
+        appBar: const PauseAppBar(),
         body: Stack(
           children: [
             Container(
@@ -86,18 +69,17 @@ class _HistoryScreenState extends State<HistoryScreen> {
                     shrinkWrap: true,
                     physics: const ClampingScrollPhysics(),
                     children: questionList.map((question) {
-                      if (!question.answered &&
-                          isDifferentDate(question.openTimeStamp)) {
-                        return LockedQuestionCard(question: question);
-                      }
+                      // TODO 광고 기능을 집어넣으면 광고기능과 함께 기능추가할것
+                      // if (!question.answered &&
+                      //     isDifferentDate(question.openTimeStamp)) {
+                      //   return LockedQuestionCard(question: question);
+                      // }
                       return QuestionCard(
                         question: question,
-                        onTap: () {
-                          setState(() {
-                            _showQuestionSheet = !_showQuestionSheet;
-                            _selectedQuestion = question;
-                          });
-                        },
+                        onTap: () => setState(() {
+                          _showQuestionSheet = !_showQuestionSheet;
+                          _selectedQuestion = question;
+                        }),
                       );
                     }).toList(),
                   );
@@ -119,7 +101,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
           child: SizedBox(
             width: 60,
             height: 60,
-            child: SvgPicture.asset('assets/icon/main_home.svg'),
+            child: Image.asset('assets/image/main_home.png'),
           ),
         ),
         bottomNavigationBar: Container(

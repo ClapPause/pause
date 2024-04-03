@@ -22,6 +22,7 @@ class QuotesContainer extends StatelessWidget {
           fontStyle: FontStyle.italic,
           color: kBlack400,
         ),
+        textAlign: TextAlign.center,
       ),
     );
   }

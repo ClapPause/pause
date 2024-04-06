@@ -26,12 +26,12 @@ class SignService {
     }
   }
 
-  static Future<User?> socialSignIn(String email) async {
+  static Future<User?> socialSignIn(String email, String social) async {
     try {
       final snapshot = await FirebaseService.fireStore
           .collection(collection)
           .where("email", isEqualTo: email)
-          .where("password", isEqualTo: "social")
+          .where("password", isEqualTo: social)
           .get();
       if (snapshot.docs.isEmpty) return null;
       return User.fromJson(snapshot.docs.first.data());

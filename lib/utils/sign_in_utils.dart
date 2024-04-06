@@ -26,7 +26,7 @@ void kakaoSignIn(BuildContext context) async {
     String? userEmail = user.kakaoAccount?.email;
     if (userEmail == null) throw Exception('이메일이 존재하지 않습니다');
     if (!context.mounted) return;
-    socialSignIn(context,userEmail);
+    socialSignIn(context,userEmail,'kakao');
   } catch (e) {
     log('kakaoSignIn Error : $e');
     return;
@@ -40,7 +40,7 @@ void naverSignIn(BuildContext context) async {
       throw Exception('로그인을 실패했습니다');
     }
     if (!context.mounted) return;
-    socialSignIn(context, result.account.email);
+    socialSignIn(context, result.account.email,'naver');
   } catch (e) {
     return;
   }
@@ -63,7 +63,7 @@ void appleSignIn(BuildContext context) async {
     final userInfo = jsonDecode(utf8.decode(jsonData));
     String email = userInfo['email'];
     if (!context.mounted) return;
-    socialSignIn(context, email);
+    socialSignIn(context, email,'apple');
   } catch (e) {
     log('appleSignIn Error : $e');
     return;
@@ -76,14 +76,14 @@ void googleSignIn(BuildContext context) async {
     GoogleSignInAccount? account = await googleSignIn.signIn();
     if (account == null) throw Exception('로그인을 실패했습니다');
     if (!context.mounted) return;
-    socialSignIn(context, account.email);
+    socialSignIn(context, account.email,'google');
   } catch (e) {
     log('googleSignIn Error : $e');
     return;
   }
 }
 
-void socialSignIn(BuildContext context, String email) async {
+void socialSignIn(BuildContext context, String email,String social) async {
   bool isSignedEmail = await SignService.isSignedUser(email);
   if (!context.mounted) return;
   if (!isSignedEmail) {
@@ -92,13 +92,13 @@ void socialSignIn(BuildContext context, String email) async {
       MaterialPageRoute(
         builder: (context) => SignUpNameScreen(
           email: email,
-          password: "social",
+          password: social,
         ),
       ),
     );
     return;
   }
-  model_user.User?  user = await SignService.socialSignIn(email);
+  model_user.User?  user = await SignService.socialSignIn(email,social);
   if(user==null || !context.mounted) return;
   context.read<UserController>().signIn(user);
   LocalService.saveUserData(user);
@@ -114,4 +114,21 @@ String getNewCertificationNumber() {
     newCertificationNumber += math.Random().nextInt(10).toString();
   }
   return newCertificationNumber;
+}
+
+
+String? getSocialImage(String social){
+  switch(social){
+    case 'kakao':
+      return 'assets/logo/social/kakao.png';
+    case 'apple':
+      return 'assets/logo/social/apple.png';
+    case 'naver':
+      return 'assets/logo/social/naver.png';
+    case 'google':
+      return 'assets/logo/social/google.png';
+    default:
+      return null;
+  }
+
 }

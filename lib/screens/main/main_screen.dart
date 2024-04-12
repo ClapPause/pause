@@ -94,15 +94,13 @@ class _MainScreenState extends State<MainScreen>
                         builder: (context, snapshot) {
                           Question? lastQuestion = snapshot.data;
                           if (lastQuestion != null &&
-                              !isDifferentDate(
-                                  lastQuestion.openTimeStamp) &&
-                              !lastQuestion.answered) {
+                              !isDifferentDate(lastQuestion.openTimeStamp)) {
                             // 질문 기록하기 화면으로 가기
                             // 이전에 질문 답변 안하고 재접속한 경우를 생각하면 될듯
                             // 질문 보여주기
                             return QuestionContainer(
                               onTap: () => setState(
-                                    () => _showQuestionSheet = true,
+                                () => _showQuestionSheet = true,
                               ),
                               question: lastQuestion,
                             );
@@ -158,8 +156,8 @@ class _MainScreenState extends State<MainScreen>
                               child: SizedBox(
                                 width: 54,
                                 height: 34,
-                                child: Image.asset(
-                                    'assets/image/main_mail.png'),
+                                child:
+                                    Image.asset('assets/image/main_mail.png'),
                               ),
                             ),
                             const SizedBox(height: 4),
@@ -219,8 +217,12 @@ class _MainScreenState extends State<MainScreen>
                     Question? question = snapshot.data;
                     if (question == null) return Container();
                     return QuestionSheet(
-                      onTap: () => setState(
-                              () => _showQuestionSheet = !_showQuestionSheet),
+                      onTap: () => setState(() {
+                        _showQuestionSheet = !_showQuestionSheet;
+                        if (_showQuestion) {
+                          _showQuestion = false;
+                        }
+                      }),
                       question: question,
                     );
                   }),
@@ -233,8 +235,7 @@ class _MainScreenState extends State<MainScreen>
               }),
           ],
         ),
-        floatingActionButtonLocation:
-        FloatingActionButtonLocation.centerDocked,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
         floatingActionButton: GestureDetector(
           onTap: () {

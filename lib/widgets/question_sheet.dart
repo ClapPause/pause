@@ -132,7 +132,7 @@ class _QuestionSheetState extends State<QuestionSheet> {
                         borderRadius: BorderRadius.circular(15),
                       ),
                       child: Text(
-                        '기록하기',
+                        widget.question.answered?'수정하기':'기록하기',
                         style: TextStyle(
                           fontSize: 12,
                           height: 16 / 12,

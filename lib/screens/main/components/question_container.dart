@@ -64,7 +64,7 @@ class QuestionContainer extends StatelessWidget {
                 BorderRadius.circular(15),
               ),
               child: Text(
-                '기록하기',
+                question.answered?'답변보기':'기록하기',
                 style: TextStyle(
                   fontSize: 14,
                   height: 16 / 14,

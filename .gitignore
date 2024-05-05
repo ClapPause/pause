@@ -30,9 +30,9 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
-/lib/constants/
-/lib/constants/constants_url.dart
-/lib/constants/constants_value.dart
+#/lib/constants/
+#/lib/constants/constants_url.dart
+#/lib/constants/constants_value.dart
 
 # Symbolication related
 app.*.symbols

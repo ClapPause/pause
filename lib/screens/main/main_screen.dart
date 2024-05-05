@@ -292,7 +292,7 @@ class _MainScreenState extends State<MainScreen>
             height: 20,
             shape: const CircularNotchedRectangle(),
             notchMargin: 8,
-            color: kPrimaryBackgroundColor,
+            color: Color(0xFFFFECE4),
             surfaceTintColor: kWhiteColor,
           ),
         ),

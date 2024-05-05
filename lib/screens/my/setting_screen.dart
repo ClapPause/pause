@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:pause/screens/main/main_screen.dart';
+import 'package:pause/screens/my/components/setting_info_container.dart';
+import 'package:pause/screens/my/update_password_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../constants/constants_color.dart';
@@ -55,28 +58,55 @@ class SettingScreen extends StatelessWidget {
           const SizedBox(width: 10),
         ],
       ),
-      body: Consumer<UserController>(builder: (context, controller, child) {
-        if (controller.user == null) {
-          Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const LoginScreen(),
-            ),
-            (route) => false,
-          );
-        }
-        return Column(
-          children: [
-            Container(
-              width: double.infinity,
-              height: 1,
-              color: const Color(0xFFD9D9D9),
-            ),
-            const SizedBox(height: 30),
-          ],
-        );
-      }),
+      body: ListView(
+        physics: const ClampingScrollPhysics(),
+        children: [
+          Container(
+            width: double.infinity,
+            height: 1,
+            color: const Color(0xFFD9D9D9),
+          ),
+          const SettingInfoContainer(),
+          Container(
+            width: double.infinity,
+            height: 1,
+            color: const Color(0xFFD9D9D9),
+          ),
+          kActionContainer('비밀번호 변경', () {}),
+          kActionContainer('자동로그인 설정', () {}),
+          Container(
+            width: double.infinity,
+            height: 1,
+            color: const Color(0xFFD9D9D9),
+          ),
+          kActionContainer('로그아웃', () {}),
+          kActionContainer('회원탈퇴', () {}),
+        ],
+      ),
+    );
+  }
 
+  Widget kActionContainer(String title, void Function() onTap) {
+    return GestureDetector(
+      onTap: onTap,
+      behavior: HitTestBehavior.opaque,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 30),
+        alignment: Alignment.center,
+        height: 40,
+        child: Row(
+          children: [
+            Expanded(
+              child: Text(title),
+            ),
+            Icon(
+              Icons.arrow_forward_ios,
+              size: 16,
+              color: kBlack200,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

@@ -11,6 +11,7 @@ class LocalService {
 
   static SharedPreferences? _sharedPreferences;
 
+  static const String _userAutoLoginKey = 'userAutoLogin';
   static const String _userInfoKey = 'userInfo';
 
   static Future<void> _setSharedPreferences() async {
@@ -63,6 +64,35 @@ class LocalService {
     } catch (e) {
       log('LocalController - getUserInfo Failed : $e');
       return null;
+    }
+  }
+
+  static Future<bool> saveAutoLogin(bool value) async {
+    try {
+      if (_sharedPreferences == null) {
+        await _setSharedPreferences();
+      }
+
+      await _sharedPreferences?.setBool(_userAutoLoginKey, value);
+      return true;
+    } catch (e) {
+      log('LocalController - saveAutoLogin Failed : $e');
+      return false;
+    }
+  }
+
+  static Future<bool> getUserAutoLogin() async {
+    try {
+      if (_sharedPreferences == null) {
+        await _setSharedPreferences();
+      }
+      bool? value = _sharedPreferences?.getBool(_userAutoLoginKey);
+      if (value == null) return false;
+
+      return value;
+    } catch (e) {
+      log('LocalController - getUserAutoLogin Failed : $e');
+      return false;
     }
   }
 

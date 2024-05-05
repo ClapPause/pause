@@ -37,6 +37,8 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void autoLogin() async {
+    bool autoLogin = await LocalService.getUserAutoLogin();
+    if (!autoLogin) return;
     User? user = await LocalService.getUserInfo();
     if (user == null) return;
     user = await SignService.localSignIn(user.email, user.password);

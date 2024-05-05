@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pause/controllers/user_controller.dart';
 import 'package:pause/models/question/question.dart';
+import 'package:pause/screens/history/history_screen.dart';
 import 'package:pause/screens/main/components/go_answer_container.dart';
 import 'package:pause/screens/main/components/question_container.dart';
 import 'package:pause/screens/main/components/quotes_container.dart';
@@ -239,22 +240,44 @@ class _MainScreenState extends State<MainScreen>
         floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
         floatingActionButton: GestureDetector(
           onTap: () {
-            if (_animationController.isCompleted) {
-              _animationController.reverse();
-            } else {
-              _animationController.forward();
-            }
-            setState(() => _showBottomBar = !_showBottomBar);
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const HistoryScreen(),
+              ),
+            );
           },
-          child: RotationTransition(
-            turns: _rotateAnimation,
-            child: SizedBox(
-              width: 60,
-              height: 60,
-              child: Image.asset('assets/image/main_add.png'),
+          child: Container(
+            decoration: BoxDecoration(
+              color: kPrimaryColor,
+              borderRadius: BorderRadius.circular(60),
+            ),
+            width: 60,
+            height: 60,
+            child: SvgPicture.asset(
+              'assets/icon/history.svg',
+              fit: BoxFit.scaleDown,
             ),
           ),
         ),
+        // floatingActionButton: GestureDetector(
+        //   onTap: () {
+        //     if (_animationController.isCompleted) {
+        //       _animationController.reverse();
+        //     } else {
+        //       _animationController.forward();
+        //     }
+        //     setState(() => _showBottomBar = !_showBottomBar);
+        //   },
+        //   child: RotationTransition(
+        //     turns: _rotateAnimation,
+        //     child: SizedBox(
+        //       width: 60,
+        //       height: 60,
+        //       child: Image.asset('assets/image/main_add.png'),
+        //     ),
+        //   ),
+        // ),
         bottomNavigationBar: Container(
           height: const BottomAppBar().height,
           decoration: const BoxDecoration(

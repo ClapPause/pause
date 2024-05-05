@@ -4,7 +4,7 @@ import '../../constants/constants_color.dart';
 import '../main/main_screen.dart';
 
 class UpdatePasswordScreen extends StatelessWidget {
-  const UpdatePasswordScreen({Key? key}) : super(key: key);
+  const UpdatePasswordScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

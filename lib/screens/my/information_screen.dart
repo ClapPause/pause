@@ -4,7 +4,7 @@ import '../../constants/constants_color.dart';
 import '../main/main_screen.dart';
 
 class InformationScreen extends StatefulWidget {
-  const InformationScreen({Key? key}) : super(key: key);
+  const InformationScreen({super.key});
 
   @override
   State<InformationScreen> createState() => _InformationScreenState();

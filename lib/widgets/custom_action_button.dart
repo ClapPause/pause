@@ -4,20 +4,24 @@ import '../constants/constants_color.dart';
 
 class CustomActionButton extends StatelessWidget {
   final String text;
-  final Function onTap;
+  final void Function() onTap;
 
-  const CustomActionButton({Key? key, required this.text, required this.onTap})
-      : super(key: key);
+  const CustomActionButton({
+    super.key,
+    required this.text,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => onTap(),
+      onTap: onTap,
       behavior: HitTestBehavior.opaque,
       child: Container(
         alignment: Alignment.center,
-        width: 300,
-        height: 55,
+        margin: const EdgeInsets.symmetric(horizontal: 45),
+        width: double.infinity,
+        height: 50,
         decoration: BoxDecoration(
           color: kPrimaryColor,
           borderRadius: BorderRadius.circular(100),
@@ -25,8 +29,8 @@ class CustomActionButton extends StatelessWidget {
         child: Text(
           text,
           style: TextStyle(
-            fontSize: 18,
-            height: 22 / 18,
+            fontSize: 16,
+            height: 20 / 16,
             color: kWhiteColor,
             fontWeight: FontWeight.bold,
           ),

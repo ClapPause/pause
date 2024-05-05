@@ -1,32 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:pause/constants/constants_color.dart';
 
-class CustomTextField extends StatelessWidget {
+class CustomTextField extends StatefulWidget {
   final TextEditingController controller;
   final String hintText;
-  final Function textChanged;
-  final Function? showClicked;
   final int? maxLength;
   final TextInputType? inputType;
-  final bool obscureText;
+  final bool showObscureText;
 
   const CustomTextField({
-    Key? key,
+    super.key,
     required this.controller,
     required this.hintText,
-    required this.textChanged,
     this.maxLength,
     this.inputType,
-    this.obscureText = false,
-    this.showClicked,
-  }) : super(key: key);
+    this.showObscureText = false,
+    required void Function() showClicked,
+  });
+
+
+  @override
+  State<CustomTextField> createState() => _CustomTextFieldState();
+}
+
+class _CustomTextFieldState extends State<CustomTextField> {
+  bool _showPassword = false;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
+      margin: const EdgeInsets.symmetric(horizontal: 45),
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      width: 300,
+      width: double.infinity,
       height: 50,
       decoration: BoxDecoration(
         color: kWhiteColor,
@@ -35,47 +41,52 @@ class CustomTextField extends StatelessWidget {
           color: kTextFieldBorderColor,
         ),
       ),
-      child: TextField(
-        controller: controller,
-        keyboardType: inputType,
-        maxLength: maxLength,
-        obscureText: obscureText,
-        decoration: InputDecoration(
-          border: InputBorder.none,
-          enabledBorder: InputBorder.none,
-          focusedBorder: InputBorder.none,
-          isDense: true,
-          counterText: '',
-          hintText: hintText,
-          hintStyle: TextStyle(
-            fontSize: 16,
-            color: kTextFieldHintColor,
-            height: 20 / 16,
+      child: Row(
+        children: [
+          Expanded(
+            child: TextField(
+              controller: widget.controller,
+              keyboardType: widget.inputType,
+              maxLength: widget.maxLength,
+              obscureText: widget.showObscureText && !_showPassword,
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                enabledBorder: InputBorder.none,
+                focusedBorder: InputBorder.none,
+                isDense: true,
+                counterText: '',
+                hintText: widget.hintText,
+                hintStyle: TextStyle(
+                  fontSize: 14,
+                  color: kTextFieldHintColor,
+                  height: 20 / 14,
+                ),
+              ),
+              style: TextStyle(
+                fontSize: 14,
+                color: kBlack300,
+                height: 20 / 14,
+              ),
+            ),
           ),
-          suffix: obscureText
-              ? GestureDetector(
-                  behavior: HitTestBehavior.opaque,
-                  onTap: () {
-                    if (showClicked == null) return;
-                    showClicked!();
-                  },
-                  child: Text(
-                    'Show',
-                    style: TextStyle(
-                      color: kPrimaryColor,
-                      fontSize: 16,
-                      height: 20 / 16,
-                    ),
-                  ),
-                )
-              : null,
-        ),
-        onChanged: (text) => textChanged(text),
-        style: TextStyle(
-          fontSize: 16,
-          color: kBlack300,
-          height: 20 / 16,
-        ),
+          if(widget.showObscureText)
+          GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: () {
+              setState(() {
+                _showPassword = !_showPassword;
+              });
+            },
+            child: Text(
+              _showPassword ? 'Hide' : 'Show',
+              style: TextStyle(
+                color: kPrimaryColor,
+                fontSize: 14,
+                height: 20 / 14,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

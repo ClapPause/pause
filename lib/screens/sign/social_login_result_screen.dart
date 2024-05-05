@@ -7,8 +7,7 @@ class SocialLoginResultScreen extends StatelessWidget {
   final String email;
 
   const SocialLoginResultScreen(
-      {Key? key, required this.social, required this.email})
-      : super(key: key);
+      {super.key, required this.social, required this.email});
 
   @override
   Widget build(BuildContext context) {

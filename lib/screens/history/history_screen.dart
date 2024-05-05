@@ -118,7 +118,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
             height: 20,
             shape: const CircularNotchedRectangle(),
             notchMargin: 8,
-            color: kPrimaryBackgroundColor,
+            color: Color(0xFFFFECE4),
             surfaceTintColor: kWhiteColor,
           ),
         ),

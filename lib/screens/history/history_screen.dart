@@ -1,11 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:pause/controllers/user_controller.dart';
 import 'package:pause/models/question/question.dart';
-import 'package:pause/screens/history/components/locked_question_card.dart';
 import 'package:pause/services/question_service.dart';
-import 'package:pause/utils/question_utils.dart';
 import 'package:provider/provider.dart';
 
 import '../../constants/constants_color.dart';
@@ -118,7 +115,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
             height: 20,
             shape: const CircularNotchedRectangle(),
             notchMargin: 8,
-            color: Color(0xFFFFECE4),
+            color: const Color(0xFFFFECE4),
             surfaceTintColor: kWhiteColor,
           ),
         ),

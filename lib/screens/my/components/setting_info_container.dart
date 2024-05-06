@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pause/constants/constants_color.dart';
 import 'package:pause/models/information/information.dart';
@@ -30,38 +31,39 @@ class SettingInfoContainer extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                Text(
-                  "회원정보",
-                  style: TextStyle(
-                    color: kBlack300,
-                    fontSize: 14,
-                    height: 20 / 14,
-                    fontWeight: FontWeight.bold,
-                  ),
+            GestureDetector(
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const InformationScreen(),
                 ),
-                const Spacer(),
-                GestureDetector(
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const InformationScreen(),
+              ),
+              behavior: HitTestBehavior.opaque,
+              child: Row(
+                children: [
+                  Text(
+                    "회원정보",
+                    style: TextStyle(
+                      color: kBlack300,
+                      fontSize: 14,
+                      height: 20 / 14,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                  child: Icon(
+                  const Spacer(),
+                  Icon(
                     Icons.arrow_forward_ios,
                     color: kBlack300,
                     size: 16,
-                  ),
-                )
-              ],
+                  )
+                ],
+              ),
             ),
             const SizedBox(height: 24),
             kInfoCard("이메일", controller.user!.email),
             kInfoCard("이름", controller.user!.name),
             FutureBuilder(
-              future: InformationService().getInformation(controller.user!.id),
+              future: InformationService.getInformation(controller.user!.id),
               builder: (context, snapshot) {
                 Information? information = snapshot.data;
                 if (information == null) {

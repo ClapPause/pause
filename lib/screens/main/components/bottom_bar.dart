@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:pause/screens/history/history_screen.dart';
-
-import '../../../constants/constants_color.dart';
 
 class BottomBar extends StatelessWidget {
   final void Function() onTap;

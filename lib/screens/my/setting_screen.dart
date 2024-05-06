@@ -1,14 +1,14 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:pause/constants/constants_reg.dart';
+import 'package:pause/controllers/user_controller.dart';
+import 'package:pause/models/user/user.dart';
 import 'package:pause/screens/main/main_screen.dart';
 import 'package:pause/screens/my/components/setting_info_container.dart';
 import 'package:pause/screens/my/update_password_screen.dart';
+import 'package:pause/utils/local_utils.dart';
 import 'package:provider/provider.dart';
 
 import '../../constants/constants_color.dart';
-import '../../controllers/user_controller.dart';
-import '../sign/login_screen.dart';
 
 class SettingScreen extends StatelessWidget {
   const SettingScreen({super.key});
@@ -72,21 +72,38 @@ class SettingScreen extends StatelessWidget {
             height: 1,
             color: const Color(0xFFD9D9D9),
           ),
-          kActionContainer('비밀번호 변경', () {}),
-          kActionContainer('자동로그인 설정', () {}),
+          kActionContainer(
+            title: '비밀번호 변경',
+            onTap: () {
+              User? user = context.read<UserController>().user;
+              if (user == null) return;
+              if (!kPasswordRegExp.hasMatch(user.password)) {
+                showMessage(context,
+                    message: '소셜로그인 이용자는 비밀번호를 \n설정하거나 변경할 수 없습니다.');
+                return;
+              }
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const UpdatePasswordScreen()),
+              );
+            },
+          ),
+          kActionContainer(title: '자동로그인 설정', onTap: () {}),
           Container(
             width: double.infinity,
             height: 1,
             color: const Color(0xFFD9D9D9),
           ),
-          kActionContainer('로그아웃', () {}),
-          kActionContainer('회원탈퇴', () {}),
+          kActionContainer(title: '로그아웃', onTap: () {}),
+          kActionContainer(title: '회원탈퇴', onTap: () {}),
         ],
       ),
     );
   }
 
-  Widget kActionContainer(String title, void Function() onTap) {
+  Widget kActionContainer(
+      {required String title, required void Function() onTap}) {
     return GestureDetector(
       onTap: onTap,
       behavior: HitTestBehavior.opaque,

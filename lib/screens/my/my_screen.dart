@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:pause/controllers/user_controller.dart';
 import 'package:pause/screens/my/setting_screen.dart';
 import 'package:pause/utils/sign_in_utils.dart';
@@ -133,75 +131,76 @@ class _MyScreenState extends State<MyScreen> {
               color: const Color(0xFFEFF0F2),
             ),
             const SizedBox(height: 24),
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 16),
-              padding: const EdgeInsets.all(16),
-              width: double.infinity,
-              height: 80,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                border: Border.all(color: kBlack100),
-              ),
-              child: Row(
-                children: [
-                  Container(
-                      alignment: Alignment.center,
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                          color: kPrimaryColor,
-                          borderRadius: BorderRadius.circular(40),
-                          boxShadow: [
-                            BoxShadow(
-                              offset: const Offset(0, 2),
-                              blurRadius: 2,
-                              color: kBlackColor.withOpacity(0.25),
-                            )
-                          ]),
-                      child: Text(
-                        'Guide',
-                        style: TextStyle(
-                          color: kWhiteColor,
-                          fontSize: 12,
-                          height: 16 / 12,
-                          letterSpacing: -0.3,
-                        ),
-                      )),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          '퍼지와 함께하는',
-                          style: TextStyle(
-                            fontSize: 12,
-                            height: 16 / 12,
-                            color: kBlackColor,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Text(
-                          '이용가이드',
-                          style: TextStyle(
-                            fontSize: 16,
-                            height: 20 / 16,
-                            color: kPrimaryColor,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const Icon(
-                    Icons.arrow_forward_ios,
-                    color: Color(0xFFBCBCBC),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 30),
+            // 이용가이드
+            // Container(
+            //   margin: const EdgeInsets.symmetric(horizontal: 16),
+            //   padding: const EdgeInsets.all(16),
+            //   width: double.infinity,
+            //   height: 80,
+            //   decoration: BoxDecoration(
+            //     borderRadius: BorderRadius.circular(8),
+            //     border: Border.all(color: kBlack100),
+            //   ),
+            //   child: Row(
+            //     children: [
+            //       Container(
+            //           alignment: Alignment.center,
+            //           width: 40,
+            //           height: 40,
+            //           decoration: BoxDecoration(
+            //               color: kPrimaryColor,
+            //               borderRadius: BorderRadius.circular(40),
+            //               boxShadow: [
+            //                 BoxShadow(
+            //                   offset: const Offset(0, 2),
+            //                   blurRadius: 2,
+            //                   color: kBlackColor.withOpacity(0.25),
+            //                 )
+            //               ]),
+            //           child: Text(
+            //             'Guide',
+            //             style: TextStyle(
+            //               color: kWhiteColor,
+            //               fontSize: 12,
+            //               height: 16 / 12,
+            //               letterSpacing: -0.3,
+            //             ),
+            //           )),
+            //       const SizedBox(width: 16),
+            //       Expanded(
+            //         child: Column(
+            //           mainAxisSize: MainAxisSize.min,
+            //           crossAxisAlignment: CrossAxisAlignment.start,
+            //           children: [
+            //             Text(
+            //               '퍼지와 함께하는',
+            //               style: TextStyle(
+            //                 fontSize: 12,
+            //                 height: 16 / 12,
+            //                 color: kBlackColor,
+            //                 fontWeight: FontWeight.bold,
+            //               ),
+            //             ),
+            //             Text(
+            //               '이용가이드',
+            //               style: TextStyle(
+            //                 fontSize: 16,
+            //                 height: 20 / 16,
+            //                 color: kPrimaryColor,
+            //                 fontWeight: FontWeight.bold,
+            //               ),
+            //             ),
+            //           ],
+            //         ),
+            //       ),
+            //       const Icon(
+            //         Icons.arrow_forward_ios,
+            //         color: Color(0xFFBCBCBC),
+            //       ),
+            //     ],
+            //   ),
+            // ),
+            // const SizedBox(height: 30),
             const Row(
               children: [
                 SizedBox(width: 30),

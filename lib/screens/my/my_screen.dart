@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:pause/constants/constants_value.dart';
 import 'package:pause/controllers/user_controller.dart';
+import 'package:pause/screens/my/privacy_rule_screen.dart';
+import 'package:pause/screens/my/service_rule_screen.dart';
 import 'package:pause/screens/my/setting_screen.dart';
 import 'package:pause/utils/sign_in_utils.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../constants/constants_color.dart';
 import '../sign/login_screen.dart';
 import 'components/service_container.dart';
@@ -215,11 +219,31 @@ class _MyScreenState extends State<MyScreen> {
               ],
             ),
             const SizedBox(height: 20),
-            ServiceContainer(onTap: () {}, text: '문의하기'),
+            ServiceContainer(
+                onTap: () async {
+                  if (await canLaunchUrl(Uri.parse(kOpenChannel))) {
+                    launchUrl(Uri.parse(kOpenChannel));
+                  }
+                },
+                text: '문의하기'),
             const SizedBox(height: 20),
-            ServiceContainer(onTap: () {}, text: '서비스 이용 약관'),
+            ServiceContainer(
+                onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ServiceRuleScreen(),
+                      ),
+                    ),
+                text: '서비스 이용 약관'),
             const SizedBox(height: 20),
-            ServiceContainer(onTap: () {}, text: '개인정보처리방침'),
+            ServiceContainer(
+                onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const PrivacyRuleScreen(),
+                      ),
+                    ),
+                text: '개인정보처리방침'),
           ],
         );
       }),

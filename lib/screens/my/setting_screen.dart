@@ -3,9 +3,15 @@ import 'package:pause/constants/constants_reg.dart';
 import 'package:pause/controllers/user_controller.dart';
 import 'package:pause/models/user/user.dart';
 import 'package:pause/screens/main/main_screen.dart';
+import 'package:pause/screens/my/auto_login_setting_screen.dart';
 import 'package:pause/screens/my/components/setting_info_container.dart';
 import 'package:pause/screens/my/update_password_screen.dart';
+import 'package:pause/screens/sign/login_screen.dart';
+import 'package:pause/services/local_service.dart';
+import 'package:pause/services/user_service.dart';
 import 'package:pause/utils/local_utils.dart';
+import 'package:pause/widgets/dialog/leave_user_dialog.dart';
+import 'package:pause/widgets/dialog/logout_dialog.dart';
 import 'package:provider/provider.dart';
 
 import '../../constants/constants_color.dart';
@@ -89,14 +95,58 @@ class SettingScreen extends StatelessWidget {
               );
             },
           ),
-          kActionContainer(title: '자동로그인 설정', onTap: () {}),
+          kActionContainer(
+            title: '자동로그인 설정',
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const AutoLoginSettingScreen(),
+              ),
+            ),
+          ),
           Container(
             width: double.infinity,
             height: 1,
             color: const Color(0xFFD9D9D9),
           ),
-          kActionContainer(title: '로그아웃', onTap: () {}),
-          kActionContainer(title: '회원탈퇴', onTap: () {}),
+          kActionContainer(
+            title: '로그아웃',
+            onTap: () async {
+              bool? value = await showDialog(
+                  context: context, builder: (context) => const LogoutDialog());
+              if (value ?? false) {
+                //로그아웃하기.
+                await LocalService.clearSharedPreferences();
+                if (!context.mounted) return;
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const LoginScreen(),
+                    ),
+                    (route) => false);
+              }
+            },
+          ),
+          kActionContainer(
+            title: '회원탈퇴',
+            onTap: () async {
+              bool? value = await showDialog(
+                  context: context,
+                  builder: (context) => const LeaveUserDialog());
+              if (value ?? false) {
+                await LocalService.clearSharedPreferences();
+                if (!context.mounted ||
+                    context.read<UserController>().user == null) return;
+                UserService.delete(id: context.read<UserController>().user!.id);
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const LoginScreen(),
+                    ),
+                    (route) => false);
+              }
+            },
+          ),
         ],
       ),
     );

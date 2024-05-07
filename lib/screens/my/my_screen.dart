@@ -223,6 +223,26 @@ class _MyScreenState extends State<MyScreen> {
           ],
         );
       }),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
+      floatingActionButton: GestureDetector(
+        onTap: () => Navigator.pop(context),
+        child: SizedBox(
+          width: 60,
+          height: 60,
+          child: Image.asset('assets/image/main_home.png'),
+        ),
+      ),
+      bottomNavigationBar: SizedBox(
+        height: const BottomAppBar().height,
+        child: BottomAppBar(
+          height: 20,
+          shape: const CircularNotchedRectangle(),
+          notchMargin: 8,
+          color: const Color(0xFFFFECE4),
+          surfaceTintColor: kWhiteColor,
+        ),
+      ),
     );
   }
 }

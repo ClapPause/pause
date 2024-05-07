@@ -25,19 +25,19 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
-  late Animation<double> _rotateAnimation;
+  // late Animation<double> _rotateAnimation;
   bool _showBottomBar = false;
   bool _showQuestion = false;
   bool _showQuestionSheet = false;
 
-  @override
-  void initState() {
-    super.initState();
-    _animationController = AnimationController(
-        duration: const Duration(milliseconds: 100), vsync: this);
-    _rotateAnimation =
-        Tween(begin: 0.0, end: 0.125).animate(_animationController);
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _animationController = AnimationController(
+  //       duration: const Duration(milliseconds: 100), vsync: this);
+  //   _rotateAnimation =
+  //       Tween(begin: 0.0, end: 0.125).animate(_animationController);
+  // }
 
   @override
   void dispose() {
@@ -292,7 +292,7 @@ class _MainScreenState extends State<MainScreen>
             height: 20,
             shape: const CircularNotchedRectangle(),
             notchMargin: 8,
-            color: Color(0xFFFFECE4),
+            color: const Color(0xFFFFECE4),
             surfaceTintColor: kWhiteColor,
           ),
         ),

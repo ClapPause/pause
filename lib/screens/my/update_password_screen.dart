@@ -5,13 +5,10 @@ import 'package:pause/widgets/custom_text_field.dart';
 import 'package:provider/provider.dart';
 
 import '../../constants/constants_color.dart';
-import '../../constants/constants_enum.dart';
 import '../../constants/constants_reg.dart';
 import '../../models/user/user.dart';
-import '../../services/sign_service.dart';
 import '../../utils/local_utils.dart';
 import '../../widgets/custom_action_button.dart';
-import '../main/main_screen.dart';
 
 class UpdatePasswordScreen extends StatefulWidget {
   const UpdatePasswordScreen({super.key});

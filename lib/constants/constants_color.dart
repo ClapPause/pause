@@ -23,3 +23,5 @@ Color kTextFieldBorderColor = const Color(0xFFE8E8E8);
 Color kBlurColor = const Color(0x14000000);
 
 Color kFlushBarBackgroundColor = const Color(0xFF323232);
+
+Color kPrimaryBackgroundColor = const Color(0xFFFFECE4);

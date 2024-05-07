@@ -57,6 +57,7 @@ class InformationService {
       if (snapshot.docs.isNotEmpty) {
         return Information.fromJson(snapshot.docs.first.data());
       }
+      return null;
     } catch (e) {
       log('InformationService/getInformation error : $e');
       return null;

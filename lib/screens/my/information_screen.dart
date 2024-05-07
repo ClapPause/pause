@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:pause/constants/constants_reg.dart';
 import 'package:pause/controllers/user_controller.dart';
 import 'package:pause/models/information/information.dart';

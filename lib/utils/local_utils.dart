@@ -2,7 +2,6 @@ import 'dart:developer';
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import '../constants/constants_color.dart';
-import '../constants/constants_reg.dart';
 
 void showMessage(BuildContext context, {required String message}) async {
   try {

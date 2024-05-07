@@ -48,4 +48,15 @@ class UserService {
       log('UserService/update error : $e');
     }
   }
+
+  static Future<void> delete({required String id})async{
+    try {
+      await FirebaseService.fireStore
+          .collection(collection)
+          .doc(id)
+          .delete();
+    } catch (e) {
+      log('UserService/delete error : $e');
+    }
+  }
 }

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
-import 'package:pause/constants/constants_html.dart';
 
 import '../../constants/constants_color.dart';
 import '../main/main_screen.dart';
@@ -65,9 +63,6 @@ class ServiceRuleScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 physics: const ClampingScrollPhysics(),
                 children: const [
-                  HtmlWidget(
-                    serviceHTML,
-                  ),
                 ],
               )
           ),

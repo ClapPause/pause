@@ -18,9 +18,9 @@ dependencies:
   # 데이터 모델링 자동화 라이브러리
   json_annotation: ^4.8.1
   # 파이어베이스 관련 라이브러리
-  cloud_firestore: ^4.15.10
-  firebase_core: ^2.27.2
-  firebase_storage: ^11.6.11
+  cloud_firestore: ^5.5.0
+  firebase_core: ^3.8.0
+  firebase_storage: ^12.3.6
   # 상태관리 라이브러리
   provider: ^6.1.2
   # 이미지 관련 라이브러리
@@ -31,7 +31,7 @@ dependencies:
   # 카카오 로그인
   kakao_flutter_sdk: ^1.8.0
   # 네이버 로그인
-  flutter_naver_login: ^1.8.0
+  flutter_naver_login: ^2.0.0
   # 애플 로그인
   sign_in_with_apple: ^6.0.0
   # 구글 로그인
@@ -46,7 +46,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^3.0.2
+  flutter_lints: ^5.0.0
   build_runner: ^2.4.9
   json_serializable: ^6.7.1
 

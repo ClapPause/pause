@@ -3,6 +3,7 @@ import 'package:pause/constants/constants_reg.dart';
 import 'package:pause/controllers/user_controller.dart';
 import 'package:pause/models/information/information.dart';
 import 'package:pause/services/information_service.dart';
+import 'package:pause/utils/local_utils.dart';
 import 'package:pause/widgets/custom_action_button.dart';
 import 'package:provider/provider.dart';
 
@@ -177,6 +178,26 @@ class _InformationScreenState extends State<InformationScreen> {
                   User user = context.read<UserController>().user!;
                   Information? information =
                       await InformationService.getInformation(user.id);
+                  if(_nameController.text.isEmpty){
+                    showMessage(context, message: "이름이 비어있으면 안돼요!");
+                    return;
+                  }
+                  if(_phoneController.text.isEmpty){
+                    showMessage(context, message: "휴대폰 번호가 비어있으면 안돼요!");
+                    return;
+                  }
+                  if(_birthController.text.isEmpty){
+                    showMessage(context, message: "생년월일이 비어있으면 안돼요!");
+                    return;
+                  }
+                  if(_gender.isEmpty){
+                    showMessage(context, message: "성별이 비어있으면 안돼요!");
+                    return;
+                  }
+                  if(_jobController.text.isEmpty){
+                    showMessage(context, message: "직업이 비어있으면 안돼요!");
+                    return;
+                  }
                   String text = _phoneController.text;
                   String phone =
                       "${text.substring(0, 3)}-${text.substring(3, text.length - 4)}-${text.substring(text.length - 4)}";

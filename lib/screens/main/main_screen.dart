@@ -22,28 +22,11 @@ class MainScreen extends StatefulWidget {
   State<MainScreen> createState() => _MainScreenState();
 }
 
-class _MainScreenState extends State<MainScreen>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _animationController;
-  // late Animation<double> _rotateAnimation;
+class _MainScreenState extends State<MainScreen>{
+
   bool _showBottomBar = false;
   bool _showQuestion = false;
   bool _showQuestionSheet = false;
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _animationController = AnimationController(
-  //       duration: const Duration(milliseconds: 100), vsync: this);
-  //   _rotateAnimation =
-  //       Tween(begin: 0.0, end: 0.125).animate(_animationController);
-  // }
-
-  @override
-  void dispose() {
-    _animationController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -228,12 +211,7 @@ class _MainScreenState extends State<MainScreen>
                     );
                   }),
             if (_showBottomBar)
-              BottomBar(onTap: () {
-                if (_animationController.isCompleted) {
-                  _animationController.reverse();
-                }
-                setState(() => _showBottomBar = !_showBottomBar);
-              }),
+              BottomBar(onTap: () => setState(() => _showBottomBar = !_showBottomBar)),
           ],
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -260,24 +238,6 @@ class _MainScreenState extends State<MainScreen>
             ),
           ),
         ),
-        // floatingActionButton: GestureDetector(
-        //   onTap: () {
-        //     if (_animationController.isCompleted) {
-        //       _animationController.reverse();
-        //     } else {
-        //       _animationController.forward();
-        //     }
-        //     setState(() => _showBottomBar = !_showBottomBar);
-        //   },
-        //   child: RotationTransition(
-        //     turns: _rotateAnimation,
-        //     child: SizedBox(
-        //       width: 60,
-        //       height: 60,
-        //       child: Image.asset('assets/image/main_add.png'),
-        //     ),
-        //   ),
-        // ),
         bottomNavigationBar: Container(
           height: const BottomAppBar().height,
           decoration: const BoxDecoration(

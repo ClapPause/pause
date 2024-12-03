@@ -150,40 +150,41 @@ class _LoginScreenState extends State<LoginScreen> {
               text: '로그인 하기',
             ),
             const SizedBox(height: 27),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'SNS 간편 로그인',
-                  style: TextStyle(
-                    fontSize: 12,
-                    height: 14 / 12,
-                    color: kBlack300,
-                  ),
-                ),
-                const SizedBox(width: 10),
-                CustomSocialSignInButton(
-                  onTap: () => kakaoSignIn(context),
-                  image: 'assets/logo/social/kakao.png',
-                ),
-                const SizedBox(width: 10),
-                CustomSocialSignInButton(
-                  onTap: () => naverSignIn(context),
-                  image: 'assets/logo/social/naver.png',
-                ),
-                const SizedBox(width: 10),
-                if (Platform.isIOS)
-                  CustomSocialSignInButton(
-                    onTap: () => appleSignIn(context),
-                    image: 'assets/logo/social/apple.png',
-                  )
-                else
-                  CustomSocialSignInButton(
-                    onTap: () => googleSignIn(context),
-                    image: 'assets/logo/social/google.jpg',
-                  ),
-              ],
-            ),
+            // 소셜로그인 도입부분
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   children: [
+            //     Text(
+            //       'SNS 간편 로그인',
+            //       style: TextStyle(
+            //         fontSize: 12,
+            //         height: 14 / 12,
+            //         color: kBlack300,
+            //       ),
+            //     ),
+            //     const SizedBox(width: 10),
+            //     CustomSocialSignInButton(
+            //       onTap: () => kakaoSignIn(context),
+            //       image: 'assets/logo/social/kakao.png',
+            //     ),
+            //     const SizedBox(width: 10),
+            //     CustomSocialSignInButton(
+            //       onTap: () => naverSignIn(context),
+            //       image: 'assets/logo/social/naver.png',
+            //     ),
+            //     const SizedBox(width: 10),
+            //     if (Platform.isIOS)
+            //       CustomSocialSignInButton(
+            //         onTap: () => appleSignIn(context),
+            //         image: 'assets/logo/social/apple.png',
+            //       )
+            //     else
+            //       CustomSocialSignInButton(
+            //         onTap: () => googleSignIn(context),
+            //         image: 'assets/logo/social/google.jpg',
+            //       ),
+            //   ],
+            // ),
             const Spacer(flex: 3),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

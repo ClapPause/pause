@@ -228,21 +228,22 @@ class _MyScreenState extends State<MyScreen> {
                 text: '문의하기'),
             const SizedBox(height: 20),
             ServiceContainer(
-                onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const ServiceRuleScreen(),
-                      ),
-                    ),
+                onTap: () async {
+                  if (await canLaunchUrl(
+                      Uri.parse(kTermsOfUse))) {
+                    launchUrl(Uri.parse(kTermsOfUse));
+                  }
+                },
                 text: '서비스 이용 약관'),
             const SizedBox(height: 20),
             ServiceContainer(
-                onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const PrivacyRuleScreen(),
-                      ),
-                    ),
+                onTap: () async {
+                  if (await canLaunchUrl(
+                      Uri.parse(kPrivacyRule))) {
+                    launchUrl(
+                        Uri.parse(kPrivacyRule));
+                  }
+                },
                 text: '개인정보처리방침'),
           ],
         );

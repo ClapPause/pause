@@ -6,7 +6,9 @@ import 'package:pause/screens/sign/sign_up_name_screen.dart';
 import 'package:pause/services/sign_service.dart';
 import 'package:pause/utils/local_utils.dart';
 import 'package:pause/widgets/custom_action_button.dart';
+import 'package:url_launcher/url_launcher.dart';
 
+import '../../constants/constants_value.dart';
 import '../../widgets/custom_text_field.dart';
 
 class SignUpEmailScreen extends StatefulWidget {
@@ -28,24 +30,18 @@ class _SignUpEmailScreenState extends State<SignUpEmailScreen> {
   bool _showAgreements = false;
   bool _agreeTermsOfUse = false;
   bool _agreeCollectPersonalInformation = false;
-  bool _agreeReceiveMarketingInformationAndProvidePersonalInformation = false;
 
-  bool get agreeAll =>
-      _agreeTermsOfUse &&
-      _agreeCollectPersonalInformation &&
-      _agreeReceiveMarketingInformationAndProvidePersonalInformation;
+  bool get agreeAll => _agreeTermsOfUse && _agreeCollectPersonalInformation;
 
   void agreeAllFunction() {
     setState(() {
       if (!agreeAll) {
         _agreeTermsOfUse = true;
         _agreeCollectPersonalInformation = true;
-        _agreeReceiveMarketingInformationAndProvidePersonalInformation = true;
         return;
       }
       _agreeTermsOfUse = false;
       _agreeCollectPersonalInformation = false;
-      _agreeReceiveMarketingInformationAndProvidePersonalInformation = false;
     });
   }
 
@@ -197,26 +193,28 @@ class _SignUpEmailScreenState extends State<SignUpEmailScreen> {
                         getSubTermContainer(
                           value: _agreeTermsOfUse,
                           title: '[필수] 퍼즈 이용 약관에 동의',
-                          onTap: () {},
+                          onTap: () async {
+                            if (await canLaunchUrl(
+                                Uri.parse(kTermsOfUse))) {
+                              launchUrl(Uri.parse(kTermsOfUse));
+                            }
+                          },
                           valueChange: () => setState(
                               () => _agreeTermsOfUse = !_agreeTermsOfUse),
                         ),
                         getSubTermContainer(
                           value: _agreeCollectPersonalInformation,
                           title: '[필수] 개인정보 수집 및 이용에 동의',
-                          onTap: () {},
+                          onTap: () async {
+                            if (await canLaunchUrl(
+                                Uri.parse(kCollectPersonalInformation))) {
+                              launchUrl(
+                                  Uri.parse(kCollectPersonalInformation));
+                            }
+                          },
                           valueChange: () => setState(() =>
                               _agreeCollectPersonalInformation =
                                   !_agreeCollectPersonalInformation),
-                        ),
-                        getSubTermContainer(
-                          value:
-                              _agreeReceiveMarketingInformationAndProvidePersonalInformation,
-                          title: '[선택] 마케팅 정보 수신 및 선택적 개인정보 제공',
-                          onTap: () {},
-                          valueChange: () => setState(() =>
-                              _agreeReceiveMarketingInformationAndProvidePersonalInformation =
-                                  !_agreeReceiveMarketingInformationAndProvidePersonalInformation),
                         ),
                       ],
                     )
@@ -233,7 +231,7 @@ class _SignUpEmailScreenState extends State<SignUpEmailScreen> {
             ),
             child: CustomActionButton(
               text: '회원가입',
-              onTap: () async{
+              onTap: () async {
                 if (!kEmailRegExp.hasMatch(_emailController.text)) {
                   showMessage(context, message: "이메일을 다시 한번 확인해 주세요.");
                   return;
@@ -255,7 +253,8 @@ class _SignUpEmailScreenState extends State<SignUpEmailScreen> {
                       message: "개인정보 수집 및 이용에 동의해야 가입할 수 있습니다.");
                   return;
                 }
-                if(await SignService.isSignedUser(_emailController.text)&&context.mounted){
+                if (await SignService.isSignedUser(_emailController.text) &&
+                    context.mounted) {
                   showMessage(context,
                       message: "이미 가입된 이메일 입니다. 로그인을 진행해 주세요.");
                   return;
@@ -263,7 +262,7 @@ class _SignUpEmailScreenState extends State<SignUpEmailScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) =>  SignUpNameScreen(
+                    builder: (context) => SignUpNameScreen(
                       email: _emailController.text,
                       password: _passwordController.text,
                     ),

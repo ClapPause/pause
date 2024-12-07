@@ -178,23 +178,23 @@ class _InformationScreenState extends State<InformationScreen> {
                   User user = context.read<UserController>().user!;
                   Information? information =
                       await InformationService.getInformation(user.id);
-                  if(_nameController.text.isEmpty){
+                  if (_nameController.text.isEmpty) {
                     showMessage(context, message: "이름이 비어있으면 안돼요!");
                     return;
                   }
-                  if(_phoneController.text.isEmpty){
+                  if (_phoneController.text.isEmpty) {
                     showMessage(context, message: "휴대폰 번호가 비어있으면 안돼요!");
                     return;
                   }
-                  if(_birthController.text.isEmpty){
+                  if (_birthController.text.isEmpty) {
                     showMessage(context, message: "생년월일이 비어있으면 안돼요!");
                     return;
                   }
-                  if(_gender.isEmpty){
+                  if (_gender.isEmpty) {
                     showMessage(context, message: "성별이 비어있으면 안돼요!");
                     return;
                   }
-                  if(_jobController.text.isEmpty){
+                  if (_jobController.text.isEmpty) {
                     showMessage(context, message: "직업이 비어있으면 안돼요!");
                     return;
                   }

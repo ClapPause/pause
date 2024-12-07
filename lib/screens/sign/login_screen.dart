@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:pause/constants/constants_color.dart';
 import 'package:pause/constants/constants_reg.dart';
@@ -14,8 +13,6 @@ import 'package:pause/widgets/custom_text_field.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/user/user.dart';
-import '../../utils/sign_in_utils.dart';
-import '../../widgets/custom_social_sign_in_button.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -29,31 +26,6 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _passwordController = TextEditingController();
 
   bool _showPassword = false;
-
-  @override
-  void initState() {
-    super.initState();
-    autoLogin();
-  }
-
-  void autoLogin() async {
-    bool autoLogin = await LocalService.getUserAutoLogin();
-    if (!autoLogin) return;
-    User? user = await LocalService.getUserInfo();
-    if (user == null) return;
-    user = await SignService.localSignIn(user.email, user.password);
-    if (user == null) return;
-    if (!mounted) return;
-    LocalService.saveUserData(user);
-    context.read<UserController>().signIn(user);
-    Navigator.pushAndRemoveUntil(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const MainScreen(),
-      ),
-      (route) => false,
-    );
-  }
 
   @override
   Widget build(BuildContext context) {

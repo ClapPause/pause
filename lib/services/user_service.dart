@@ -24,7 +24,7 @@ class UserService {
   static Future<User?> findByUid(String id) async {
     try {
       final snapshot =
-      await FirebaseService.fireStore.collection(collection).doc(id).get();
+          await FirebaseService.fireStore.collection(collection).doc(id).get();
       if (snapshot.exists) {
         return User.fromJson(snapshot.data()!);
       }
@@ -49,12 +49,9 @@ class UserService {
     }
   }
 
-  static Future<void> delete({required String id})async{
+  static Future<void> delete({required String id}) async {
     try {
-      await FirebaseService.fireStore
-          .collection(collection)
-          .doc(id)
-          .delete();
+      await FirebaseService.fireStore.collection(collection).doc(id).delete();
     } catch (e) {
       log('UserService/delete error : $e');
     }

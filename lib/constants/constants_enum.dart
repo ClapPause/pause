@@ -1,2 +1,3 @@
-enum SignInReturn { success, failed, duplicated}
-enum ServiceReturnType { success, failed, error}
+enum SignInReturn { success, failed, duplicated }
+
+enum ServiceReturnType { success, failed, error }

@@ -10,10 +10,11 @@ import 'package:pause/screens/sign/login_screen.dart';
 import 'package:pause/services/question_service.dart';
 import 'package:pause/widgets/pause_app_bar.dart';
 import 'package:provider/provider.dart';
+
 import '../../constants/constants_color.dart';
 import '../../utils/question_utils.dart';
-import 'components/bottom_bar.dart';
 import '../../widgets/question_sheet.dart';
+import 'components/bottom_bar.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -22,8 +23,7 @@ class MainScreen extends StatefulWidget {
   State<MainScreen> createState() => _MainScreenState();
 }
 
-class _MainScreenState extends State<MainScreen>{
-
+class _MainScreenState extends State<MainScreen> {
   bool _showBottomBar = false;
   bool _showQuestion = false;
   bool _showQuestionSheet = false;
@@ -211,7 +211,9 @@ class _MainScreenState extends State<MainScreen>{
                     );
                   }),
             if (_showBottomBar)
-              BottomBar(onTap: () => setState(() => _showBottomBar = !_showBottomBar)),
+              BottomBar(
+                  onTap: () =>
+                      setState(() => _showBottomBar = !_showBottomBar)),
           ],
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

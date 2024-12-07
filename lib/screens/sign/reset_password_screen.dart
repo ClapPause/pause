@@ -93,7 +93,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
 
               ServiceReturnType status = await SignService.resetPassword(
                   widget.email, _passwordController.text);
-              if(!context.mounted) return;
+              if (!context.mounted) return;
               if (status == ServiceReturnType.success) {
                 Navigator.pushAndRemoveUntil(
                     context,
@@ -103,10 +103,10 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                     (route) => false);
                 showMessage(context, message: '새로 설정된 비밀번호로 로그인 해주세요.');
               }
-              if(status == ServiceReturnType.failed){
+              if (status == ServiceReturnType.failed) {
                 showMessage(context, message: '가입된 이메일이 존재하지 않습니다.');
               }
-              if(status == ServiceReturnType.error){
+              if (status == ServiceReturnType.error) {
                 showMessage(context, message: '해당 이메일은 소셜 로그인으로 가입된 계정입니다.');
               }
             },

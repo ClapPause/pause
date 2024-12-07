@@ -1,17 +1,14 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:pause/controllers/user_controller.dart';
 import 'package:pause/screens/sign/login_screen.dart';
+import 'package:pause/screens/splash/splash_screen.dart';
 import 'package:provider/provider.dart';
+
 import 'firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  KakaoSdk.init(
-    nativeAppKey: 'bc536bb4c4cad12f69b8a63301f39096',
-    javaScriptAppKey: '71f7c8d2595ba19a948d695ca00631ac',
-  );
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -43,7 +40,7 @@ class MyApp extends StatelessWidget {
             child: child,
           );
         },
-        home: const LoginScreen(),
+        home: const SplashScreen(),
       ),
     );
   }

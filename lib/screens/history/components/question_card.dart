@@ -7,6 +7,7 @@ import '../../../utils/date_utils.dart';
 class QuestionCard extends StatelessWidget {
   final void Function() onTap;
   final Question question;
+
   const QuestionCard({super.key, required this.question, required this.onTap});
 
   @override
@@ -15,15 +16,13 @@ class QuestionCard extends StatelessWidget {
       behavior: HitTestBehavior.opaque,
       onTap: onTap,
       child: Container(
-        margin: const EdgeInsets.only(
-            left: 27, right: 27, bottom: 20),
+        margin: const EdgeInsets.only(left: 27, right: 27, bottom: 20),
         padding: const EdgeInsets.all(20),
         width: double.infinity,
         height: 140,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          border: Border.all(
-              color: const Color(0xFF999999).withOpacity(0.6)),
+          border: Border.all(color: const Color(0xFF999999).withOpacity(0.6)),
           color: kWhiteColor,
         ),
         child: Column(

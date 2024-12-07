@@ -28,14 +28,6 @@ dependencies:
   flutter_svg: ^2.0.9
   # 내부 저장소 라이브러리
   shared_preferences: ^2.2.2
-  # 카카오 로그인
-  kakao_flutter_sdk: ^1.8.0
-  # 네이버 로그인
-  flutter_naver_login: ^2.0.0
-  # 애플 로그인
-  sign_in_with_apple: ^6.0.0
-  # 구글 로그인
-  google_sign_in: ^6.2.1
   # 안내
   another_flushbar: ^1.12.30
   # http

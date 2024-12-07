@@ -20,8 +20,8 @@ class PauseAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: Image.asset('assets/logo/pause_logo.png'),
       actions: [
         GestureDetector(
-          onTap: () => Navigator.push(
-              context, MaterialPageRoute(builder: (context) => const MyScreen())),
+          onTap: () => Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const MyScreen())),
           child: SizedBox(
             width: 30,
             height: 30,

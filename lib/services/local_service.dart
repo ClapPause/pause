@@ -7,6 +7,7 @@ import '../models/user/user.dart';
 
 class LocalService {
   static final LocalService _instance = LocalService();
+
   factory LocalService() => _instance;
 
   static SharedPreferences? _sharedPreferences;
@@ -95,5 +96,4 @@ class LocalService {
       return false;
     }
   }
-
 }

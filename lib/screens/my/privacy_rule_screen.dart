@@ -58,12 +58,12 @@ class PrivacyRuleScreen extends StatelessWidget {
             height: 1,
             color: const Color(0xFFD9D9D9),
           ),
-           Expanded(
-            child: ListView(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              physics: const ClampingScrollPhysics(),
-              children: const [
-                Text('''
+          Expanded(
+              child: ListView(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            physics: const ClampingScrollPhysics(),
+            children: const [
+              Text('''
 제1조(목적)
 주식회사 클랩(CLAP)(이하 ‘회사'라고 함)는 회사가 제공하고자 하는 서비스(이하 ‘회사 서비 스’)를 이용하는 개인(이하 ‘이용자’ 또는 ‘개인’)의 정보(이하 ‘개인정보’)를 보호하기 위해, 개 인정보보호법, 정보통신망 이용촉진 및 정보보호 등에 관한 법률(이하 '정보통신망법') 등 관   련 법령을 준수하고, 서비스 이용자의 개인정보 보호 관련한 고충을 신속하고 원활하게 처  리할 수 있도록 하기 위하여 다음과 같이 개인정보처리방침(이하 ‘본 방침’)을 수립합니다.
 
@@ -256,9 +256,8 @@ class PrivacyRuleScreen extends StatelessWidget {
 제1조 본 방침은 2024.05.01.부터 시행됩니다.
 
                 ''')
-              ],
-            )
-          ),
+            ],
+          )),
         ],
       ),
     );

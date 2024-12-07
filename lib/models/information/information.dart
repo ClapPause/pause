@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+
 part 'information.g.dart';
 
 @JsonSerializable()
@@ -21,6 +22,8 @@ class Information {
     required this.gender,
   });
 
-  factory Information.fromJson(Map<String, dynamic> json) => _$InformationFromJson(json);
+  factory Information.fromJson(Map<String, dynamic> json) =>
+      _$InformationFromJson(json);
+
   Map<String, dynamic> toJson() => _$InformationToJson(this);
 }

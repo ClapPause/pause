@@ -11,8 +11,11 @@ class InformationService {
   static Future<Information?> uploadInformation(
       String userId, Map<String, dynamic> informationData) async {
     try {
-      final snapshot = await FirebaseService.fireStore.collection(_collection).where('uid',isEqualTo: userId).get();
-      if(snapshot.docs.isNotEmpty) return null;
+      final snapshot = await FirebaseService.fireStore
+          .collection(_collection)
+          .where('uid', isEqualTo: userId)
+          .get();
+      if (snapshot.docs.isNotEmpty) return null;
       String? id = await DataService.getId(name: _collection);
       Information information = Information.fromJson({
         "id": id,
@@ -32,7 +35,8 @@ class InformationService {
     }
   }
 
-  static Future<Information?> updateInformation(Information updatedInformation) async {
+  static Future<Information?> updateInformation(
+      Information updatedInformation) async {
     try {
       await UserService.update(
           id: updatedInformation.uid,
@@ -52,8 +56,10 @@ class InformationService {
 
   static Future<Information?> getInformation(String userId) async {
     try {
-      final snapshot = await
-      FirebaseService.fireStore.collection(_collection).where('uid',isEqualTo: userId).get();
+      final snapshot = await FirebaseService.fireStore
+          .collection(_collection)
+          .where('uid', isEqualTo: userId)
+          .get();
       if (snapshot.docs.isNotEmpty) {
         return Information.fromJson(snapshot.docs.first.data());
       }

@@ -7,17 +7,18 @@ import '../../../constants/constants_color.dart';
 class QuestionContainer extends StatelessWidget {
   final void Function() onTap;
   final Question question;
-  const QuestionContainer({super.key, required this.onTap, required this.question});
+
+  const QuestionContainer(
+      {super.key, required this.onTap, required this.question});
 
   @override
   Widget build(BuildContext context) {
-    return  GestureDetector(
+    return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: onTap,
       child: Container(
         alignment: Alignment.center,
-        margin: const EdgeInsets.symmetric(
-            horizontal: 36),
+        margin: const EdgeInsets.symmetric(horizontal: 36),
         width: double.infinity,
         height: 160,
         decoration: BoxDecoration(
@@ -60,11 +61,10 @@ class QuestionContainer extends StatelessWidget {
               height: 30,
               decoration: BoxDecoration(
                 color: const Color(0xFFFFA5A5),
-                borderRadius:
-                BorderRadius.circular(15),
+                borderRadius: BorderRadius.circular(15),
               ),
               child: Text(
-                question.answered?'답변보기':'기록하기',
+                question.answered ? '답변보기' : '기록하기',
                 style: TextStyle(
                   fontSize: 14,
                   height: 16 / 14,

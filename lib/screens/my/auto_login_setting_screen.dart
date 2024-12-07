@@ -100,8 +100,8 @@ class _AutoLoginSettingScreenState extends State<AutoLoginSettingScreen> {
                   inactiveThumbColor: kBlack200,
                   inactiveTrackColor: kBlack100,
                   trackOutlineWidth:
-                      MaterialStateProperty.resolveWith((states) => 0),
-                  trackOutlineColor: MaterialStateProperty.resolveWith(
+                      WidgetStateProperty.resolveWith((states) => 0),
+                  trackOutlineColor: WidgetStateProperty.resolveWith(
                       (Set states) => kBlack100),
                 ),
               ],

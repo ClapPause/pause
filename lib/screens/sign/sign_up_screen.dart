@@ -1,11 +1,9 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:pause/screens/sign/login_screen.dart';
 import 'package:pause/screens/sign/sign_up_email_screen.dart';
+
 import '../../constants/constants_color.dart';
-import '../../utils/sign_in_utils.dart';
 import '../../widgets/custom_outlined_action_button.dart';
-import '../../widgets/custom_social_sign_in_button.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});

@@ -194,8 +194,7 @@ class _SignUpEmailScreenState extends State<SignUpEmailScreen> {
                           value: _agreeTermsOfUse,
                           title: '[필수] 퍼즈 이용 약관에 동의',
                           onTap: () async {
-                            if (await canLaunchUrl(
-                                Uri.parse(kTermsOfUse))) {
+                            if (await canLaunchUrl(Uri.parse(kTermsOfUse))) {
                               launchUrl(Uri.parse(kTermsOfUse));
                             }
                           },
@@ -208,8 +207,7 @@ class _SignUpEmailScreenState extends State<SignUpEmailScreen> {
                           onTap: () async {
                             if (await canLaunchUrl(
                                 Uri.parse(kCollectPersonalInformation))) {
-                              launchUrl(
-                                  Uri.parse(kCollectPersonalInformation));
+                              launchUrl(Uri.parse(kCollectPersonalInformation));
                             }
                           },
                           valueChange: () => setState(() =>

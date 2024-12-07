@@ -18,7 +18,6 @@ class CustomTextField extends StatefulWidget {
     required void Function() showClicked,
   });
 
-
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
 }
@@ -69,23 +68,23 @@ class _CustomTextFieldState extends State<CustomTextField> {
               ),
             ),
           ),
-          if(widget.showObscureText)
-          GestureDetector(
-            behavior: HitTestBehavior.opaque,
-            onTap: () {
-              setState(() {
-                _showPassword = !_showPassword;
-              });
-            },
-            child: Text(
-              _showPassword ? 'Hide' : 'Show',
-              style: TextStyle(
-                color: kPrimaryColor,
-                fontSize: 14,
-                height: 20 / 14,
+          if (widget.showObscureText)
+            GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTap: () {
+                setState(() {
+                  _showPassword = !_showPassword;
+                });
+              },
+              child: Text(
+                _showPassword ? 'Hide' : 'Show',
+                style: TextStyle(
+                  color: kPrimaryColor,
+                  fontSize: 14,
+                  height: 20 / 14,
+                ),
               ),
             ),
-          ),
         ],
       ),
     );

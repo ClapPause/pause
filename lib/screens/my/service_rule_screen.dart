@@ -60,10 +60,10 @@ class ServiceRuleScreen extends StatelessWidget {
           ),
           Expanded(
               child: ListView(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                physics: const ClampingScrollPhysics(),
-                children: const [
-                  Text('''
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            physics: const ClampingScrollPhysics(),
+            children: const [
+              Text('''
 제1조(목적)
 이 약관은 주식회사 클랩(CLAP) (이하 '회사' 라고  합니다)가  제공하는 제반 서비스의  이용  과 관련하여 회사와 회원과의 권리, 의무 및 책임사항, 기타 필요한 사항을 규정함을 목적으   로 합니다.
 
@@ -240,9 +240,8 @@ class ServiceRuleScreen extends StatelessWidget {
 본 약관은 2024.05.01.부터 시행됩니다.
 
                   ''')
-                ],
-              )
-          ),
+            ],
+          )),
         ],
       ),
     );

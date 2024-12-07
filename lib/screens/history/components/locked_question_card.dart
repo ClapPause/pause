@@ -12,7 +12,7 @@ class LockedQuestionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         /**
          * 1. 광고를 시청한다
          * 2. 올바르게 광고를 시청했을경우 잠금을 풀어준다 => answered = true;answerTimeStamp = 잠금해제시각, answer : "" 로 update

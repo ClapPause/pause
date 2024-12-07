@@ -16,7 +16,6 @@ Color kBoxBorderColor = const Color(0xFFF2F2FA);
 Color kCheckBoxBorderColor = const Color(0xFFDCDCE2);
 Color kFontColor = const Color(0xFF414141);
 
-
 Color kTextFieldHintColor = const Color(0xFFBDBDBD);
 Color kTextFieldBorderColor = const Color(0xFFE8E8E8);
 

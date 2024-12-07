@@ -1,12 +1,16 @@
 import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'firebase_service.dart';
 
 class DataService {
   static final DataService _instance = DataService._internal();
+
   factory DataService() => _instance;
+
   DataService._internal();
+
   //Data
 
   static const String collection = 'data';
@@ -16,13 +20,12 @@ class DataService {
       String? id;
       await FirebaseFirestore.instance.runTransaction((transaction) async {
         DocumentReference documentReference =
-        FirebaseFirestore.instance.collection(collection).doc(name);
+            FirebaseFirestore.instance.collection(collection).doc(name);
         DocumentSnapshot snapshot = await transaction.get(documentReference);
         int count = snapshot.get('count');
         transaction.update(documentReference, {'count': count + 1});
 
         id = '$count';
-
       });
 
       return id;

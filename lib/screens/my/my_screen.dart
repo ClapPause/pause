@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:pause/constants/constants_value.dart';
 import 'package:pause/controllers/user_controller.dart';
-import 'package:pause/screens/my/privacy_rule_screen.dart';
-import 'package:pause/screens/my/service_rule_screen.dart';
 import 'package:pause/screens/my/setting_screen.dart';
 import 'package:pause/utils/sign_in_utils.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
+
 import '../../constants/constants_color.dart';
 import '../sign/login_screen.dart';
 import 'components/service_container.dart';
@@ -229,8 +228,7 @@ class _MyScreenState extends State<MyScreen> {
             const SizedBox(height: 20),
             ServiceContainer(
                 onTap: () async {
-                  if (await canLaunchUrl(
-                      Uri.parse(kTermsOfUse))) {
+                  if (await canLaunchUrl(Uri.parse(kTermsOfUse))) {
                     launchUrl(Uri.parse(kTermsOfUse));
                   }
                 },
@@ -238,10 +236,8 @@ class _MyScreenState extends State<MyScreen> {
             const SizedBox(height: 20),
             ServiceContainer(
                 onTap: () async {
-                  if (await canLaunchUrl(
-                      Uri.parse(kPrivacyRule))) {
-                    launchUrl(
-                        Uri.parse(kPrivacyRule));
+                  if (await canLaunchUrl(Uri.parse(kPrivacyRule))) {
+                    launchUrl(Uri.parse(kPrivacyRule));
                   }
                 },
                 text: '개인정보처리방침'),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../constants/constants_color.dart';
 import '../models/question/question.dart';
 import '../services/question_service.dart';
@@ -19,8 +20,8 @@ class _QuestionSheetState extends State<QuestionSheet> {
   @override
   void initState() {
     super.initState();
-    if(widget.question.answered){
-      _answerController.text = widget.question.answer??'';
+    if (widget.question.answered) {
+      _answerController.text = widget.question.answer ?? '';
     }
   }
 
@@ -132,7 +133,7 @@ class _QuestionSheetState extends State<QuestionSheet> {
                         borderRadius: BorderRadius.circular(15),
                       ),
                       child: Text(
-                        widget.question.answered?'수정하기':'기록하기',
+                        widget.question.answered ? '수정하기' : '기록하기',
                         style: TextStyle(
                           fontSize: 12,
                           height: 16 / 12,

@@ -80,7 +80,7 @@ class _SignUpNameScreenState extends State<SignUpNameScreen> {
             CustomActionButton(
               text: '다음',
               onTap: () async {
-                if(!kNickNameRegExp.hasMatch(_nameController.text)){
+                if (!kNickNameRegExp.hasMatch(_nameController.text)) {
                   showMessage(context, message: '닉네임에 특수문자는 사용할 수 없습니다.');
                   return;
                 }
@@ -91,7 +91,8 @@ class _SignUpNameScreenState extends State<SignUpNameScreen> {
                 if (user != null && context.mounted) {
                   Navigator.pushAndRemoveUntil(
                     context,
-                    MaterialPageRoute(builder: (context) =>  WelcomeScreen(user:user)),
+                    MaterialPageRoute(
+                        builder: (context) => WelcomeScreen(user: user)),
                     (route) => false,
                   );
                 }
